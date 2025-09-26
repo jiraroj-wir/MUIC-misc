@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  toolchain:
+    build:
+      context: .
+      dockerfile: Dockerfiles/toolchain.Dockerfile
+    image: localhost/toolchain:latest
+    container_name: toolchain
+    restart: unless-stopped
+    volumes:
+      - ./:/work
+    # helpful for `compose run` interactive sessions
+    tty: true         # allocate a TTY
+    stdin_open: true  # keep STDIN open
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc 'true'"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+

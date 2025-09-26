@@ -1,0 +1,29 @@
+# kube.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lightdebian-pod
+  labels:
+    app: lightdebian
+spec:
+  containers:
+    - name: app
+      image: localhost/lightdebian:latest
+      ports:
+        - containerPort: 8080
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lightdebian-svc
+spec:
+  selector:
+    app: lightdebian
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  type: NodePort
