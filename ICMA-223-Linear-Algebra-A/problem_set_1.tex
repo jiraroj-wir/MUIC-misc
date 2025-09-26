@@ -1,0 +1,282 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{} % empty
+\rhead{\hmwkHeaderTitle}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0pt}
+
+\setlength\parindent{0pt}
+
+%
+% Homework Details
+%
+
+\newcommand{\hmwkTitle}{Problem Set\ 1}
+\newcommand{\hmwkDueDate}{Friday, September 26, 2025,\ 11{:}59 pm (Thai time)}
+\newcommand{\hmwkClass}{ICMA 223 Linear Algebra A}
+\newcommand{\hmwkClassTime}{Section 1}
+\newcommand{\hmwkClassInstructor}{Pakawut Jiradilok}
+\newcommand{\hmwkAuthorName}{\textbf{Jiraroj Wiruchpongsanon (6781617)}}
+
+% What appears in the top-right header
+\newcommand{\hmwkHeaderTitle}{ICMA 223 Linear Algebra A: Problem Set 1}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Helper Commands
+%
+
+\newcounter{partCounter}
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newtheorem*{theorem}{Theorem}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\textbf{General Information}
+
+\medskip
+
+\textit{Important Note!} Please do write a list of collaborators (friends you work with) and sources you
+consult for this assignment (e.g. lecture notes, specific pages of a book, specific links to Wikipedia,
+etc., but do not write just ``YouTube'' or ``Google'' without further information). Even if you
+work on this assignment alone and do not consult any source, please write ``Collaborators: None.
+Sources consulted: None.'' in your submission.
+
+Collaboration on problem sets is allowed, and is in fact encouraged. Working with friends can be
+an enjoyable way to learn mathematics!
+
+\textit{Information:} This problem set is due at 11{:}59 pm (Thai time), Friday, September 26, 2025.
+You should submit your work on Canvas. See the syllabus for the homework policy.
+
+For each problem, please show your work! For correct answers alone without proper explanations
+or derivations, you might be awarded only very few, or even zero, points. On the other hand, for
+incorrect answers with proper explanations or derivations, you might be awarded a lot of points.
+
+\pagebreak
+
+\section*{Problem 0 (10 points)}
+
+Please provide the following information. Please refer to the ``General Information'' section above
+for details.
+\begin{enumerate}
+    \item[(a)] What is your full name (first name and last name)?
+    \item[(b)] What is your student ID number?
+    \item[(c)] Which section are you a student of, Section 1 or Section 2?
+    \item[(d)] Please write the list of your collaborators for this problem set.
+    \item[(e)] Please write the list of sources you consult for this problem set.
+\end{enumerate}
+Optional: what is your nickname (if you have one)?
+
+\medskip
+\solution
+
+\begin{enumerate}
+    \item[(a)] Jiraroj Wiruchpongsanon
+    \item[(b)] 6781617
+    \item[(c)] Section 1
+    \item[(d)] Collaborators: None
+    \item[(e)] Sources consulted: ICMA223 Lecture Notes v0.1.2025.07.15 and  llm as copilot for LaTeX scripting
+\end{enumerate}
+
+Optional: Nickname — Pin
+
+\newpage
+
+\section*{Problem 1 (20 points)}
+
+Since we are in a big class with many students, it is important that we agree on how the logistics
+of this class works. Please read the syllabus of this class carefully.
+
+After you have finished reading the syllabus, please answer the following questions about our
+class’s logistics. (Respond in your own sentences. Do not simply copy or quote from the syllabus.)
+\begin{enumerate}
+    \item[(i)] How is the numerical grade point (100\%) for each student computed in this class? How
+    much are Quiz 1, Quiz 2, Midterm, Final, and the homework assignments weighted?
+    \item[(ii)] What is the cheat sheet policy for this class? Is the cheat sheet policy for each quiz different
+    from the cheat sheet policy for the midterm?
+    \item[(iii)] What is the homework extension policy for this class? What can a student do if it is less
+    than 20 minutes before the deadline of a problem set, but they are still not half way done
+    with the homework assignment?
+    \item[(iv)] What is our class’s policy on the use of artificial intelligence (AI) tools?
+\end{enumerate}
+
+\medskip
+\solution
+
+\begin{enumerate}
+    \item[(i)] Numerical grade points are computed by combining 2 quizes (10\% each, so 20\%), midterm (15\%), final (20\%) and problem sets (45\%; weighted equally) -- 100\% in total. 
+    \item[(ii)] The cheat sheet rules are the same for quizes, midterm and final -- 2 A4 papers, hand written.
+    \item[(iii)] They undoubtedly should've email the lecturor; defend their self with valid reason -- if there's any, else just beg for mercy -- they might get an extension.
+    \item[(iv)] The use of artificial intellignece isn't prohibited, but you have to stated: "which llm model you use?", "in which problem?", and "how did you use it?".
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 2 (20 points)}
+
+Read the lecture notes for the first week.
+
+Write one short paragraph (containing approximately 3 -- 5 sentences) about the reading. Your
+paragraph can be, for example, something you found interesting or confusing about what you read,
+or it can be where you work out an explicit example of some result from the notes, or it can even
+be other things you would like to write about which are related to the reading!
+
+\medskip
+\solution
+
+The first week felt more like a revision of highschool materials, I spent 30 minutes reading this section, but still didn't do the problem sets in the lecture notes yet.
+I did have a moment of confusion:
+
+\begin{theorem}
+Every linear system has either
+\begin{enumerate}
+    \item[(i)] Infinitely many solutions
+    \item[(ii)] A unique solution
+    \item[(iii)] No solution
+\end{enumerate}
+\end{theorem}
+
+For a moment, i thought why can't the system have a non-singular finite solutions -- then i realize thats not geometrically possible for a linear system. 
+
+\begin{remark}
+I imagine an extremely flat object that divide a 3d space into 2 parts (I choose 3d, because it's easy to visualize) -- spawn a few of those objects; the answer is the point(s) that all objects intersects, and a even just 2 "hyperplane" can't intersects twice. 
+\end{remark}
+
+Also, I am reading \emph{Linear Algebra Done Right} in parallel to these lecture notes.
+\newpage
+
+\section*{Problem 3 (20 points)}
+
+Read the lecture notes for the second week.
+
+Write one short paragraph (containing approximately 3 -- 5 sentences) about the reading. Your
+paragraph can be, for example, something you found interesting or confusing about what you read,
+or it can be where you work out an explicit example of some result from the notes, or it can even
+be other things you would like to write about which are related to the reading!
+
+\medskip
+\solution
+
+
+At the time i'm writing this, we haven't taken lecture 2 yet -- I decided to do it in advance, since other subject also assigned works as well. 
+
+On page 22, theres a footnote (3) on "Nothing is an element of the set", clarifying that the set is empty, and "nothing" isn't the only member of that set ($\{"nothing"\}$). I found this amusing; presumed a student bring this up in class out of confusion. 
+
+The gaussian elimination seems confusing at first, the examples at the back of the session helps, but it would be easier to understand each P's if there's more examples right after the definition. 
+Also, theres a self-doubt about your ability to augment the matrices into "reduce row echelon form". During my highschool years, I struggle to manipulate the matrices, thus i uses cramer's rule along with chio's method (condensation) -- relying on finite determinant computation cost. 
+
+\newpage
+
+\section*{Problem 4 (30 points)}
+
+Consider the system
+\[
+\begin{cases}
+x + y + z = 5,\\
+-\,y + 2z = 1,
+\end{cases}
+\]
+of two linear equations in the variables $x, y, z$.
+\begin{enumerate}
+    \item[(a)] Determine the set of all real numbers $t$ such that the triple $(-3t + 4,\, 2t,\, t + 1)$ is a solution
+    to the linear system.
+    \item[(b)] Determine the set of all real numbers $u$ such that the triple $(-3u,\, 2u + 3,\, u + 2)$ is a solution
+    to the linear system.
+    \item[(c)] Determine the set of all real numbers $v$ such that the triple $(-v,\, v + 1,\, v)$ is a solution to
+    the linear system.
+    \item[(d)] Determine the set of all real numbers $w$ such that the triple $(w - 1,\, 3w,\, w + 1)$ is a solution
+    to the linear system.
+\end{enumerate}
+
+\medskip
+\solution
+
+\begin{enumerate}
+    \item[(a)] substitute $x$ with $-3t + 4$, $y$ with $2t$ and $z$ with $t + 1$. The first equation becomes
+    \[(-3t + 4) + 2t + (t + 1) = 5\]
+    \[0t + 5 = 5\]
+    which implies $t \in \mathbb{R}$. On the other hand, the second equation becomes
+    \[-(2t) + 2(t + 1) = 1\]
+    \[0t + 2 = 1\]
+    \[2 = 1\]
+    which is false. Since the first equation will always be satisfied, and the second equation can't be satisfied -- the triple cannot be both satisfied and un-satisfied at the same time, thus there's no solution to the linear system -- the desire set is $\emptyset$
+
+    \item[(b)] substitute $x$ with $-3u$, $y$ with $2u + 3$ and $z$ with $u + 2$. The first equation becomes 
+    \[(-3u) + (2u + 3) + (u + 2) = 5\] 
+    \[0u + 5 = 5\] 
+    which implies $u \in \mathbb{R}$. 
+    On the other hand, the second equation becomes 
+    \[-(2u + 3) + 2(u + 2) = 1\] 
+    \[0u + 1 = 1\] 
+    which also implies $u \in \mathbb{R}$. Since the criteria for $u$ to holds true is the same in both equation -- being any real numbers. The set we would like to determined is $\mathbb{R}$, set of all real numbers.
+
+    \item[(c)] substitute $x$ with $-v$, $y$ with $v + 1$ and $z$ with $v$. The first equation becomes 
+    \[(-v) + (v + 1) + v = 5\] 
+    \[v + 1 = 5\] 
+    which implies $v = 4$. on the other hand, the second equation becomes 
+    \[-(v + 1) + 2v = 1\] 
+    \[v - 1 = 1\] 
+    which implies $v = 2$. We observe that for a value of $v$ to make both equations hold true, we must have both $v = 4$ and $v = 2$. Since any value $v$ cannot simultaneously be both $4$ and $2$, we conclude that there is no real number $v$ for which $(-v, v + 1, v)$ is a solution to the linear system. Thus, the set we would like to determine as $\emptyset$, the empty set.   
+
+    \item[(d)] substitute $x$ with $w - 1$, $y$ with $3w$ and $z$ with $w + 1$. The first equation becomes 
+    \[(w - 1) + (3w) + (w + 1) = 5\] 
+    \[5w = 5\] 
+    which implies $w = 1$. On the other hand, the second equation becomes 
+    \[-(3w) + 2(w + 1) = 1\] 
+    \[-3w + 2w + 2 = 1\]   
+    \[-w = -1\]
+    which imples $w = 1$. Since the value of $w$ that satisfy equation the first and second equation are the same, we can conclude that the set we would like to determined is $\{1\}$. 
+\end{enumerate}
+
+\end{document}
+
