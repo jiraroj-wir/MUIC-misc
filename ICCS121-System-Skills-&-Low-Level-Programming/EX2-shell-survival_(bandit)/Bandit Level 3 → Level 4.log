@@ -1,0 +1,125 @@
+Script started on 2025-09-20 08:18:02+00:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="178" LINES="51"]
+$ # Jiraroj WIruch     iruchpongsanon (6781617( )
+$ #   ssh bandit3@bandit.labs.overthewire.org -p 2220
+The authenticity of host '[bandit.labs.overthewire.org]:2220 ([56.228.72.241]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/app/.ssh' (No such file or directory).
+Failed to add the host to the list of known hosts (/home/app/.ssh/known_hosts).
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit3@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+[?2004h]0;bandit3@bandit: ~bandit3@bandit:~$ ls
+[?2004l[0m[01;34minhere[0m
+[?2004h]0;bandit3@bandit: ~bandit3@bandit:~$ tree inhere
+[?2004lCommand 'tree' not found, but can be installed with:
+snap install tree  # version 2.1.3+pkg-5852, or
+apt  install tree  # version 2.1.1-2
+See 'snap info tree' for additional versions.
+[?2004h]0;bandit3@bandit: ~bandit3@bandit:~$ cd inhere[K[K[K[K[K[K[K[K[K# cd in to[K[K[Kto in[K[K`inhere` direcotry[K[K[K[Ktory
+[?2004l[?2004h]0;bandit3@bandit: ~bandit3@bandit:~$ cd inhere/
+[?2004l[?2004h]0;bandit3@bandit: ~/inherebandit3@bandit:~/inhere$ ls
+[?2004l[?2004h]0;bandit3@bandit: ~/inherebandit3@bandit:~/inhere$ # the file is hid[Kdden, so we don't see anything right now
+[?2004l[?2004h]0;bandit3@bandit: ~/inherebandit3@bandit:~/inhere$ ls -a
+[?2004l[0m[01;34m.[0m  [01;34m..[0m  ...Hiding-From-You
+[?2004h]0;bandit3@bandit: ~/inherebandit3@bandit:~/inhere$ # found the hidden file, try to view it with cat
+[?2004l[?2004h]0;bandit3@bandit: ~/inherebandit3@bandit:~/inhere$ cat ...Hiding-From-You 
+[?2004l2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+[?2004h]0;bandit3@bandit: ~/inherebandit3@bandit:~/inhere$ exit[K[K[K[Kexit
+[?2004llogout
+Connection to bandit.labs.overthewire.org closed.
+$ exit
+
+Script done on 2025-09-20 08:23:21+00:00 [COMMAND_EXIT_CODE="0"]

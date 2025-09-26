@@ -1,0 +1,619 @@
+Script started on 2025-09-20 08:45:34+00:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="178" LINES="51"]
+$ ssh bandit5  @bandit.labs.overthw ewire.org -p 2220
+The authenticity of host '[bandit.labs.overthewire.org]:2220 ([56.228.72.241]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/app/.ssh' (No such file or directory).
+Failed to add the host to the list of known hosts (/home/app/.ssh/known_hosts).
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit5@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ ls
+[?2004l[0m[01;34minhere[0m
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ du -a inhere
+[?2004l4	inhere/maybehere18/-file2
+4	inhere/maybehere18/.file3
+8	inhere/maybehere18/spaces file2
+8	inhere/maybehere18/spaces file3
+8	inhere/maybehere18/spaces file1
+4	inhere/maybehere18/-file3
+4	inhere/maybehere18/.file2
+12	inhere/maybehere18/-file1
+8	inhere/maybehere18/.file1
+64	inhere/maybehere18
+8	inhere/maybehere05/-file2
+8	inhere/maybehere05/.file3
+4	inhere/maybehere05/spaces file2
+12	inhere/maybehere05/spaces file3
+4	inhere/maybehere05/spaces file1
+4	inhere/maybehere05/-file3
+8	inhere/maybehere05/.file2
+4	inhere/maybehere05/-file1
+4	inhere/maybehere05/.file1
+60	inhere/maybehere05
+4	inhere/maybehere08/-file2
+4	inhere/maybehere08/.file3
+4	inhere/maybehere08/spaces file2
+12	inhere/maybehere08/spaces file3
+4	inhere/maybehere08/spaces file1
+4	inhere/maybehere08/-file3
+4	inhere/maybehere08/.file2
+4	inhere/maybehere08/-file1
+8	inhere/maybehere08/.file1
+52	inhere/maybehere08
+4	inhere/maybehere13/-file2
+8	inhere/maybehere13/.file3
+4	inhere/maybehere13/spaces file2
+8	inhere/maybehere13/spaces file3
+4	inhere/maybehere13/spaces file1
+4	inhere/maybehere13/-file3
+12	inhere/maybehere13/.file2
+4	inhere/maybehere13/-file1
+8	inhere/maybehere13/.file1
+60	inhere/maybehere13
+8	inhere/maybehere16/-file2
+4	inhere/maybehere16/.file3
+4	inhere/maybehere16/spaces file2
+8	inhere/maybehere16/spaces file3
+12	inhere/maybehere16/spaces file1
+8	inhere/maybehere16/-file3
+12	inhere/maybehere16/.file2
+8	inhere/maybehere16/-file1
+8	inhere/maybehere16/.file1
+76	inhere/maybehere16
+12	inhere/maybehere14/-file2
+8	inhere/maybehere14/.file3
+4	inhere/maybehere14/spaces file2
+4	inhere/maybehere14/spaces file3
+4	inhere/maybehere14/spaces file1
+4	inhere/maybehere14/-file3
+4	inhere/maybehere14/.file2
+8	inhere/maybehere14/-file1
+4	inhere/maybehere14/.file1
+56	inhere/maybehere14
+4	inhere/maybehere07/-file2
+4	inhere/maybehere07/.file3
+12	inhere/maybehere07/spaces file2
+4	inhere/maybehere07/spaces file3
+8	inhere/maybehere07/spaces file1
+4	inhere/maybehere07/-file3
+4	inhere/maybehere07/.file2
+4	inhere/maybehere07/-file1
+4	inhere/maybehere07/.file1
+52	inhere/maybehere07
+12	inhere/maybehere00/-file2
+8	inhere/maybehere00/.file3
+8	inhere/maybehere00/spaces file2
+4	inhere/maybehere00/spaces file3
+8	inhere/maybehere00/spaces file1
+8	inhere/maybehere00/-file3
+8	inhere/maybehere00/.file2
+4	inhere/maybehere00/-file1
+4	inhere/maybehere00/.file1
+68	inhere/maybehere00
+4	inhere/maybehere17/-file2
+8	inhere/maybehere17/.file3
+4	inhere/maybehere17/spaces file2
+8	inhere/maybehere17/spaces file3
+12	inhere/maybehere17/spaces file1
+8	inhere/maybehere17/-file3
+12	inhere/maybehere17/.file2
+4	inhere/maybehere17/-file1
+4	inhere/maybehere17/.file1
+68	inhere/maybehere17
+12	inhere/maybehere15/-file2
+4	inhere/maybehere15/.file3
+4	inhere/maybehere15/spaces file2
+4	inhere/maybehere15/spaces file3
+4	inhere/maybehere15/spaces file1
+8	inhere/maybehere15/-file3
+4	inhere/maybehere15/.file2
+12	inhere/maybehere15/-file1
+4	inhere/maybehere15/.file1
+60	inhere/maybehere15
+4	inhere/maybehere10/-file2
+4	inhere/maybehere10/.file3
+4	inhere/maybehere10/spaces file2
+4	inhere/maybehere10/spaces file3
+12	inhere/maybehere10/spaces file1
+4	inhere/maybehere10/-file3
+4	inhere/maybehere10/.file2
+4	inhere/maybehere10/-file1
+8	inhere/maybehere10/.file1
+52	inhere/maybehere10
+4	inhere/maybehere12/-file2
+4	inhere/maybehere12/.file3
+4	inhere/maybehere12/spaces file2
+4	inhere/maybehere12/spaces file3
+4	inhere/maybehere12/spaces file1
+12	inhere/maybehere12/-file3
+12	inhere/maybehere12/.file2
+12	inhere/maybehere12/-file1
+8	inhere/maybehere12/.file1
+68	inhere/maybehere12
+4	inhere/maybehere06/-file2
+4	inhere/maybehere06/.file3
+8	inhere/maybehere06/spaces file2
+8	inhere/maybehere06/spaces file3
+4	inhere/maybehere06/spaces file1
+4	inhere/maybehere06/-file3
+12	inhere/maybehere06/.file2
+8	inhere/maybehere06/-file1
+4	inhere/maybehere06/.file1
+60	inhere/maybehere06
+4	inhere/maybehere04/-file2
+4	inhere/maybehere04/.file3
+4	inhere/maybehere04/spaces file2
+8	inhere/maybehere04/spaces file3
+8	inhere/maybehere04/spaces file1
+4	inhere/maybehere04/-file3
+8	inhere/maybehere04/.file2
+8	inhere/maybehere04/-file1
+4	inhere/maybehere04/.file1
+56	inhere/maybehere04
+8	inhere/maybehere03/-file2
+4	inhere/maybehere03/.file3
+4	inhere/maybehere03/spaces file2
+12	inhere/maybehere03/spaces file3
+4	inhere/maybehere03/spaces file1
+12	inhere/maybehere03/-file3
+12	inhere/maybehere03/.file2
+4	inhere/maybehere03/-file1
+12	inhere/maybehere03/.file1
+76	inhere/maybehere03
+4	inhere/maybehere02/-file2
+8	inhere/maybehere02/.file3
+12	inhere/maybehere02/spaces file2
+4	inhere/maybehere02/spaces file3
+8	inhere/maybehere02/spaces file1
+8	inhere/maybehere02/-file3
+4	inhere/maybehere02/.file2
+4	inhere/maybehere02/-file1
+8	inhere/maybehere02/.file1
+64	inhere/maybehere02
+8	inhere/maybehere19/-file2
+4	inhere/maybehere19/.file3
+12	inhere/maybehere19/spaces file2
+4	inhere/maybehere19/spaces file3
+8	inhere/maybehere19/spaces file1
+8	inhere/maybehere19/-file3
+8	inhere/maybehere19/.file2
+8	inhere/maybehere19/-file1
+8	inhere/maybehere19/.file1
+72	inhere/maybehere19
+8	inhere/maybehere11/-file2
+12	inhere/maybehere11/.file3
+4	inhere/maybehere11/spaces file2
+12	inhere/maybehere11/spaces file3
+4	inhere/maybehere11/spaces file1
+12	inhere/maybehere11/-file3
+4	inhere/maybehere11/.file2
+4	inhere/maybehere11/-file1
+4	inhere/maybehere11/.file1
+68	inhere/maybehere11
+4	inhere/maybehere09/-file2
+4	inhere/maybehere09/.file3
+12	inhere/maybehere09/spaces file2
+8	inhere/maybehere09/spaces file3
+8	inhere/maybehere09/spaces file1
+8	inhere/maybehere09/-file3
+12	inhere/maybehere09/.file2
+4	inhere/maybehere09/-file1
+8	inhere/maybehere09/.file1
+72	inhere/maybehere09
+4	inhere/maybehere01/-file2
+4	inhere/maybehere01/.file3
+8	inhere/maybehere01/spaces file2
+12	inhere/maybehere01/spaces file3
+8	inhere/maybehere01/spaces file1
+12	inhere/maybehere01/-file3
+4	inhere/maybehere01/.file2
+8	inhere/maybehere01/-file1
+12	inhere/maybehere01/.file1
+76	inhere/maybehere01
+1284	inhere
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # I think i m[K[K[K[K[K[K[K[K[K[K[K[K[K# i tryped the [K[K[K[K[K[K[K[K[K[Kyped it wrong huh? 
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # i typed it wrong huh? [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12Pdu -a inhere[C/*
+[?2004l12	inhere/maybehere00/-file2
+8	inhere/maybehere00/.file3
+8	inhere/maybehere00/spaces file2
+4	inhere/maybehere00/spaces file3
+8	inhere/maybehere00/spaces file1
+8	inhere/maybehere00/-file3
+8	inhere/maybehere00/.file2
+4	inhere/maybehere00/-file1
+4	inhere/maybehere00/.file1
+68	inhere/maybehere00
+4	inhere/maybehere01/-file2
+4	inhere/maybehere01/.file3
+8	inhere/maybehere01/spaces file2
+12	inhere/maybehere01/spaces file3
+8	inhere/maybehere01/spaces file1
+12	inhere/maybehere01/-file3
+4	inhere/maybehere01/.file2
+8	inhere/maybehere01/-file1
+12	inhere/maybehere01/.file1
+76	inhere/maybehere01
+4	inhere/maybehere02/-file2
+8	inhere/maybehere02/.file3
+12	inhere/maybehere02/spaces file2
+4	inhere/maybehere02/spaces file3
+8	inhere/maybehere02/spaces file1
+8	inhere/maybehere02/-file3
+4	inhere/maybehere02/.file2
+4	inhere/maybehere02/-file1
+8	inhere/maybehere02/.file1
+64	inhere/maybehere02
+8	inhere/maybehere03/-file2
+4	inhere/maybehere03/.file3
+4	inhere/maybehere03/spaces file2
+12	inhere/maybehere03/spaces file3
+4	inhere/maybehere03/spaces file1
+12	inhere/maybehere03/-file3
+12	inhere/maybehere03/.file2
+4	inhere/maybehere03/-file1
+12	inhere/maybehere03/.file1
+76	inhere/maybehere03
+4	inhere/maybehere04/-file2
+4	inhere/maybehere04/.file3
+4	inhere/maybehere04/spaces file2
+8	inhere/maybehere04/spaces file3
+8	inhere/maybehere04/spaces file1
+4	inhere/maybehere04/-file3
+8	inhere/maybehere04/.file2
+8	inhere/maybehere04/-file1
+4	inhere/maybehere04/.file1
+56	inhere/maybehere04
+8	inhere/maybehere05/-file2
+8	inhere/maybehere05/.file3
+4	inhere/maybehere05/spaces file2
+12	inhere/maybehere05/spaces file3
+4	inhere/maybehere05/spaces file1
+4	inhere/maybehere05/-file3
+8	inhere/maybehere05/.file2
+4	inhere/maybehere05/-file1
+4	inhere/maybehere05/.file1
+60	inhere/maybehere05
+4	inhere/maybehere06/-file2
+4	inhere/maybehere06/.file3
+8	inhere/maybehere06/spaces file2
+8	inhere/maybehere06/spaces file3
+4	inhere/maybehere06/spaces file1
+4	inhere/maybehere06/-file3
+12	inhere/maybehere06/.file2
+8	inhere/maybehere06/-file1
+4	inhere/maybehere06/.file1
+60	inhere/maybehere06
+4	inhere/maybehere07/-file2
+4	inhere/maybehere07/.file3
+12	inhere/maybehere07/spaces file2
+4	inhere/maybehere07/spaces file3
+8	inhere/maybehere07/spaces file1
+4	inhere/maybehere07/-file3
+4	inhere/maybehere07/.file2
+4	inhere/maybehere07/-file1
+4	inhere/maybehere07/.file1
+52	inhere/maybehere07
+4	inhere/maybehere08/-file2
+4	inhere/maybehere08/.file3
+4	inhere/maybehere08/spaces file2
+12	inhere/maybehere08/spaces file3
+4	inhere/maybehere08/spaces file1
+4	inhere/maybehere08/-file3
+4	inhere/maybehere08/.file2
+4	inhere/maybehere08/-file1
+8	inhere/maybehere08/.file1
+52	inhere/maybehere08
+4	inhere/maybehere09/-file2
+4	inhere/maybehere09/.file3
+12	inhere/maybehere09/spaces file2
+8	inhere/maybehere09/spaces file3
+8	inhere/maybehere09/spaces file1
+8	inhere/maybehere09/-file3
+12	inhere/maybehere09/.file2
+4	inhere/maybehere09/-file1
+8	inhere/maybehere09/.file1
+72	inhere/maybehere09
+4	inhere/maybehere10/-file2
+4	inhere/maybehere10/.file3
+4	inhere/maybehere10/spaces file2
+4	inhere/maybehere10/spaces file3
+12	inhere/maybehere10/spaces file1
+4	inhere/maybehere10/-file3
+4	inhere/maybehere10/.file2
+4	inhere/maybehere10/-file1
+8	inhere/maybehere10/.file1
+52	inhere/maybehere10
+8	inhere/maybehere11/-file2
+12	inhere/maybehere11/.file3
+4	inhere/maybehere11/spaces file2
+12	inhere/maybehere11/spaces file3
+4	inhere/maybehere11/spaces file1
+12	inhere/maybehere11/-file3
+4	inhere/maybehere11/.file2
+4	inhere/maybehere11/-file1
+4	inhere/maybehere11/.file1
+68	inhere/maybehere11
+4	inhere/maybehere12/-file2
+4	inhere/maybehere12/.file3
+4	inhere/maybehere12/spaces file2
+4	inhere/maybehere12/spaces file3
+4	inhere/maybehere12/spaces file1
+12	inhere/maybehere12/-file3
+12	inhere/maybehere12/.file2
+12	inhere/maybehere12/-file1
+8	inhere/maybehere12/.file1
+68	inhere/maybehere12
+4	inhere/maybehere13/-file2
+8	inhere/maybehere13/.file3
+4	inhere/maybehere13/spaces file2
+8	inhere/maybehere13/spaces file3
+4	inhere/maybehere13/spaces file1
+4	inhere/maybehere13/-file3
+12	inhere/maybehere13/.file2
+4	inhere/maybehere13/-file1
+8	inhere/maybehere13/.file1
+60	inhere/maybehere13
+12	inhere/maybehere14/-file2
+8	inhere/maybehere14/.file3
+4	inhere/maybehere14/spaces file2
+4	inhere/maybehere14/spaces file3
+4	inhere/maybehere14/spaces file1
+4	inhere/maybehere14/-file3
+4	inhere/maybehere14/.file2
+8	inhere/maybehere14/-file1
+4	inhere/maybehere14/.file1
+56	inhere/maybehere14
+12	inhere/maybehere15/-file2
+4	inhere/maybehere15/.file3
+4	inhere/maybehere15/spaces file2
+4	inhere/maybehere15/spaces file3
+4	inhere/maybehere15/spaces file1
+8	inhere/maybehere15/-file3
+4	inhere/maybehere15/.file2
+12	inhere/maybehere15/-file1
+4	inhere/maybehere15/.file1
+60	inhere/maybehere15
+8	inhere/maybehere16/-file2
+4	inhere/maybehere16/.file3
+4	inhere/maybehere16/spaces file2
+8	inhere/maybehere16/spaces file3
+12	inhere/maybehere16/spaces file1
+8	inhere/maybehere16/-file3
+12	inhere/maybehere16/.file2
+8	inhere/maybehere16/-file1
+8	inhere/maybehere16/.file1
+76	inhere/maybehere16
+4	inhere/maybehere17/-file2
+8	inhere/maybehere17/.file3
+4	inhere/maybehere17/spaces file2
+8	inhere/maybehere17/spaces file3
+12	inhere/maybehere17/spaces file1
+8	inhere/maybehere17/-file3
+12	inhere/maybehere17/.file2
+4	inhere/maybehere17/-file1
+4	inhere/maybehere17/.file1
+68	inhere/maybehere17
+4	inhere/maybehere18/-file2
+4	inhere/maybehere18/.file3
+8	inhere/maybehere18/spaces file2
+8	inhere/maybehere18/spaces file3
+8	inhere/maybehere18/spaces file1
+4	inhere/maybehere18/-file3
+4	inhere/maybehere18/.file2
+12	inhere/maybehere18/-file1
+8	inhere/maybehere18/.file1
+64	inhere/maybehere18
+8	inhere/maybehere19/-file2
+4	inhere/maybehere19/.file3
+12	inhere/maybehere19/spaces file2
+4	inhere/maybehere19/spaces file3
+8	inhere/maybehere19/spaces file1
+8	inhere/maybehere19/-file3
+8	inhere/maybehere19/.file2
+8	inhere/maybehere19/-file1
+8	inhere/maybehere19/.file1
+72	inhere/maybehere19
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # check the files manually, i [K[KI can't fine[Kd the ones with 1033 bytes
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ cd inhere/
+[?2004l[?2004h]0;bandit5@bandit: ~/inherebandit5@bandit:~/inhere$ ls -a
+[?2004l[0m[01;34m.[0m   [01;34mmaybehere00[0m  [01;34mmaybehere02[0m  [01;34mmaybehere04[0m  [01;34mmaybehere06[0m  [01;34mmaybehere08[0m  [01;34mmaybehere10[0m  [01;34mmaybehere12[0m  [01;34mmaybehere14[0m  [01;34mmaybehere16[0m  [01;34mmaybehere18[0m
+[01;34m..[0m  [01;34mmaybehere01[0m  [01;34mmaybehere03[0m  [01;34mmaybehere05[0m  [01;34mmaybehere07[0m  [01;34mmaybehere09[0m  [01;34mmaybehere11[0m  [01;34mmaybehere13[0m  [01;34mmaybehere15[0m  [01;34mmaybehere17[0m  [01;34mmaybehere19[0m
+[?2004h]0;bandit5@bandit: ~/inherebandit5@bandit:~/inhere$ cd ..
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # jus[K[K[K[K[K# maybe we can find the human readable ones first. [K[K, ASCII right? 
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ file[K[K[K[Kfile inhere/*
+[?2004linhere/maybehere00: directory
+inhere/maybehere01: directory
+inhere/maybehere02: directory
+inhere/maybehere03: directory
+inhere/maybehere04: directory
+inhere/maybehere05: directory
+inhere/maybehere06: directory
+inhere/maybehere07: directory
+inhere/maybehere08: directory
+inhere/maybehere09: directory
+inhere/maybehere10: directory
+inhere/maybehere11: directory
+inhere/maybehere12: directory
+inhere/maybehere13: directory
+inhere/maybehere14: directory
+inhere/maybehere15: directory
+inhere/maybehere16: directory
+inhere/maybehere17: directory
+inhere/maybehere18: directory
+inhere/maybehere19: directory
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # OH[K[KSo, therea[Ks many layers in it[K[K[K[K[Kinside, [C[C[C[C[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cso i can't just skim[K[K[K[Ksearch the first layers[K
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ find [K[K[K[K[K# maybe I can just use find command?
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ [7mfind / -size +100M[27mfind / -size +100M[C[1PM[1PM[1PM[7m0.01033[27mM0.01033M
+[?2004lfind: Invalid argument `+0.01033M' to -size
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # I[KI guess this toption [K[K[K[K[K[K[K[Koption only works for larger files
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # [K[K[7mfind . -size 1024c[27mfind . -size 1024c[C[1P[1@i[1@n[1@h[1@e[1@r[1@e[C[C[C[C[C[C[C[C[C[C[C[C[1Pc[1Pc3c3c
+[?2004linhere/maybehere07/.file2
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # Ah, the comma[Kand is[K[K[K[K[K[K[K[K[K[K[K[K[K[Kthe first site doesn't list all the options. [K[K
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # [K[K# thers only a single file container[K[K[Kning [K[K[K[K[K[K[K[K[K[K[Kwith 1033 bytes, try to opti[K[Ken it with [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kto view it with `cat`
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ cat inhere/maybehere07/.file2
+[?2004lHWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        [?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # try to ce[Kheck other criteria as well
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ find[K[K[K[K# try to check other criteria as well[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pcat inhere/maybehere07/.file2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# thers only a single file with 1033 bytes, try to view it with `cat`[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[20PAh, the first site doesn't list all the options[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[26Pfind inhere -size 1033c [7m-type f ! -executable[27m-type f ! -executable
+[?2004linhere/maybehere07/.file2
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # the latter [K[K[K[K[K[K[Kargument added supposed to find non executable files, but theres only single fi[K[K1033 bytes files[K anyway
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # the argument added supposed to find non executable files, but theres only single 1033 bytes file anyway[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[60Pfind inhere -size 1033c -type f ! -executable[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[1P
+[?2004linhere/maybehere18/-file2
+inhere/maybehere18/spaces file2
+inhere/maybehere18/.file2
+inhere/maybehere05/-file2
+inhere/maybehere05/spaces file2
+inhere/maybehere05/.file2
+inhere/maybehere08/-file2
+inhere/maybehere08/spaces file2
+inhere/maybehere08/.file2
+inhere/maybehere13/-file2
+inhere/maybehere13/spaces file2
+inhere/maybehere13/.file2
+inhere/maybehere16/-file2
+inhere/maybehere16/spaces file2
+inhere/maybehere16/.file2
+inhere/maybehere14/-file2
+inhere/maybehere14/spaces file2
+inhere/maybehere14/.file2
+inhere/maybehere07/-file2
+inhere/maybehere07/spaces file2
+inhere/maybehere07/.file2
+inhere/maybehere00/-file2
+inhere/maybehere00/spaces file2
+inhere/maybehere00/.file2
+inhere/maybehere17/-file2
+inhere/maybehere17/spaces file2
+inhere/maybehere17/.file2
+inhere/maybehere15/-file2
+inhere/maybehere15/spaces file2
+inhere/maybehere15/.file2
+inhere/maybehere10/-file2
+inhere/maybehere10/spaces file2
+inhere/maybehere10/.file2
+inhere/maybehere12/-file2
+inhere/maybehere12/spaces file2
+inhere/maybehere12/.file2
+inhere/maybehere06/-file2
+inhere/maybehere06/spaces file2
+inhere/maybehere06/.file2
+inhere/maybehere04/-file2
+inhere/maybehere04/spaces file2
+inhere/maybehere04/.file2
+inhere/maybehere03/-file2
+inhere/maybehere03/spaces file2
+inhere/maybehere03/.file2
+inhere/maybehere02/-file2
+inhere/maybehere02/spaces file2
+inhere/maybehere02/.file2
+inhere/maybehere19/-file2
+inhere/maybehere19/spaces file2
+inhere/maybehere19/.file2
+inhere/maybehere11/-file2
+inhere/maybehere11/spaces file2
+inhere/maybehere11/.file2
+inhere/maybehere09/-file2
+inhere/maybehere09/spaces file2
+inhere/maybehere09/.file2
+inhere/maybehere01/-file2
+inhere/maybehere01/spaces file2
+inhere/maybehere01/.file2
+[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ # [K[K# try grep the output of [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K# nvm, we find [K[K[K[K[K[K[K[K[K I found the passworkd[K[Kd anyway
+[?2004l[?2004h]0;bandit5@bandit: ~bandit5@bandit:~$ exit
+[?2004llogout
+Connection to bandit.labs.overthewire.org closed.
+$ ei xit
+
+Script done on 2025-09-20 09:14:20+00:00 [COMMAND_EXIT_CODE="0"]

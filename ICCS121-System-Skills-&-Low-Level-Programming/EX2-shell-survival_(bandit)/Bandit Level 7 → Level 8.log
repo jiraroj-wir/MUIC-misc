@@ -1,0 +1,455 @@
+Script started on 2025-09-20 11:33:40+00:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="178" LINES="51"]
+$ ssh bandit7@bandit.labs.overthewire.org -p 2220
+The authenticity of host '[bandit.labs.overthewire.org]:2220 ([56.228.72.241]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/app/.ssh' (No such file or directory).
+Failed to add the host to the list of known hosts (/home/app/.ssh/known_hosts).
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit7@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+[?2004h]0;bandit7@bandit: ~bandit7@bandit:~$ ls
+[?2004ldata.txt
+[?2004h]0;bandit7@bandit: ~bandit7@bandit:~$ # can[K[K[Ktry using vi with '/[K[K`/` to search the word million[K[K[K[K[K[K[K[K`[K `millionth`
+[?2004l[?2004h]0;bandit7@bandit: ~bandit7@bandit:~$ vi data.txt
+[?2004l[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;51r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[51;1H"data.txt" [readonly] 98567L, 4184396B[2;1H▽[6n[2;1H  [3;1HPzz\[0%m[6n[3;1H           [1;1H[>c]10;?]11;?[1;1HMindanao's      N6PH8LMO9bwicZlWoAkzmXHivNph0UsV
+moonlighting    7NqUrjLRdToIv0pxJgoZveXlPN4Kfx4K[2;49H[K[3;1Hrisen   MUk0Vww3HmveUw0grbjFtV6QRhw5tmaL[3;41H[K[4;1Hglop's  sF01wdNNxDWa3UquN5rRnhV2lvU9DofK
+Adderley's      n7LQDp3GWWguDTwP9ZIH3DsuHa4vFW4i
+barberry[8CQgFmTjWmyxLoMXrraX8a2Jatku6U1WC7
+overshoot[7C45LcdW8ofL1oy8GBIIIevJd8pQuvw8Nc
+Troyes  PZUo5R7l5ip5ok7w38AWpJSYwwsKApAd
+murderers[7C0iKPh9qtUqyPPS6qyDEqJhZffvgCcOTu
+disassembling   EwSD7dTAXMYDOrdGwcSCMkvVZtcK4HtP
+sponged bTnaglDO1cbrSJ76dYXYHtLojudlSuC3
+veriest siqpG3qpKGofUj3zkvwuGw3QPW5TKdp9
+crosses bNeX5oGAf3gRgVAssBOI1XP3Uv3fULaE
+host    LRjaFXnVoCvnicukDqMlDEFbwQP22QcR
+Hatsheput[7CMZJ2JhVcWaCQhnfKR3Zxprtlq5OH1dac
+bribe   rMDdUnrU3C98M6X2hITNDLtclGaxujH6
+innuendoing     LuG8TDrDpMrCrhh0qo0fmE9FqC5Hpz8l
+diminuendo's    WQhGZ6Q3TwdgpG4Mb4sctJ9ZSPvf8a0p
+Iquitos r0CnpvSZLEFl6EUy3yEXbTygBDqgFnCN
+Ikhnaton[8CDugTLBNTUSaYp2AJn0sBof4274gHkGTl
+scaring wHGU8TgzqbkH4779kQkGq50KVTQAPIWz
+Rourke's[8CqT2slGEjSw1AbAgbWU8v2aFPPWnbZCSs
+compensation's  gyJwXcL2e4Clk6KrAbFjBOh3kwjnyzSF
+tadpole's[7CpGYLn1zZ8KC4OD8ouqbtvJMyKdk3oxNB
+Lombardi[8CmZEqu8VtejytTWsFQ7jCBPc6IG86RtS3
+seduced kK6EDfyR8DYyjGAkpKFfcAfIWhjOuElg
+Charleston      sEgVPZS2WQIUn7WoJfB7B5fPuN2yT5ns
+washtub Cp5g8GAxFvlWPhu0qkP0ibDV1Nmip75h
+modeled 2JoMYsoqPvm5OIYp2RuEhfZQ0SzFLyEP
+key's   1AHgDwbT4WoUT0nJE1zyyu8C5JhN4zYL
+recessed[8CntlZ32lSLyhyX21DqHvTwBJp6BVHLCbm
+licentiously    5TVONchNtOm8uQyybpzWFNI1lIdxJbYQ
+salutation      PV20UGT4GEHlF11NJgFzyZPeT3RkxiDL
+labelled[8CBdVmrNzvzAM7G47EhxrFkxd9hfchtE4i
+audiences[7CAdvDd6HF8KictHdVtLfLwLrDhbogqaEW
+embalmer's      zblqYsZ2JHSzaCc2fl3uqBOEiDKQVlXw
+needling[8CzMdUEhihTijqLyN6V7S9mMIvnJ9jt0Cu
+monogramed      R8smDnlpgk3f80v2qYNVxm25p3sMwlfv
+hades   vJB3LlamwpFP03rVWHlNxLZGTPxx2ubV
+digitization    GP7hedi0rXHE3a7fRz24meKMGgZccHf5
+walnut's[8C2DYRjpmpEGgPMWAIHF7uOSsPjUtrbHfa
+accidentally    VeHUb561wIaLx6qJJYGmwkUilvEdtODR
+olives  Z7nfZ4BLe937w1DOhbRyLOwAlA2XCjF1
+gushier CH3fv4dX1VIlpB1Mj473yVMOKxNxl20y
+foundations     kNwCQUpnU3lyTOU0uINLZEyYjZJMwnH1
+models  rMnRWkzFveh46yjbxdorip9VSRF0BMGM
+cliffs  lYobhRGYoe4IEVbC32QaKJIjgHGt7vU4
+Vlad    tOsD4EVdD2YHw6F8cksoxvA03DC6EwuQ
+Excedrin[8CXA6SQsN9cZxlbCx8w9XMuHnkPHECPGED
+Ahmad   UJdpCRVOAdQyRQUdMtfLtrrDz9cm1BVp[51;161H1,1[11CTop[1;1H[?25h[?4mP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\P$q q\[?12$p[27m[23m[29m[m[H[2J[?25l[1;1HMindanao's      N6PH8LMO9bwicZlWoAkzmXHivNph0UsV
+moonlighting    7NqUrjLRdToIv0pxJgoZveXlPN4Kfx4K
+risen   MUk0Vww3HmveUw0grbjFtV6QRhw5tmaL
+glop's  sF01wdNNxDWa3UquN5rRnhV2lvU9DofK
+Adderley's      n7LQDp3GWWguDTwP9ZIH3DsuHa4vFW4i
+barberry[8CQgFmTjWmyxLoMXrraX8a2Jatku6U1WC7
+overshoot[7C45LcdW8ofL1oy8GBIIIevJd8pQuvw8Nc
+Troyes  PZUo5R7l5ip5ok7w38AWpJSYwwsKApAd
+murderers[7C0iKPh9qtUqyPPS6qyDEqJhZffvgCcOTu
+disassembling   EwSD7dTAXMYDOrdGwcSCMkvVZtcK4HtP
+sponged bTnaglDO1cbrSJ76dYXYHtLojudlSuC3
+veriest siqpG3qpKGofUj3zkvwuGw3QPW5TKdp9
+crosses bNeX5oGAf3gRgVAssBOI1XP3Uv3fULaE
+host    LRjaFXnVoCvnicukDqMlDEFbwQP22QcR
+Hatsheput[7CMZJ2JhVcWaCQhnfKR3Zxprtlq5OH1dac
+bribe   rMDdUnrU3C98M6X2hITNDLtclGaxujH6
+innuendoing     LuG8TDrDpMrCrhh0qo0fmE9FqC5Hpz8l
+diminuendo's    WQhGZ6Q3TwdgpG4Mb4sctJ9ZSPvf8a0p
+Iquitos r0CnpvSZLEFl6EUy3yEXbTygBDqgFnCN
+Ikhnaton[8CDugTLBNTUSaYp2AJn0sBof4274gHkGTl
+scaring wHGU8TgzqbkH4779kQkGq50KVTQAPIWz
+Rourke's[8CqT2slGEjSw1AbAgbWU8v2aFPPWnbZCSs
+compensation's  gyJwXcL2e4Clk6KrAbFjBOh3kwjnyzSF
+tadpole's[7CpGYLn1zZ8KC4OD8ouqbtvJMyKdk3oxNB
+Lombardi[8CmZEqu8VtejytTWsFQ7jCBPc6IG86RtS3
+seduced kK6EDfyR8DYyjGAkpKFfcAfIWhjOuElg
+Charleston      sEgVPZS2WQIUn7WoJfB7B5fPuN2yT5ns
+washtub Cp5g8GAxFvlWPhu0qkP0ibDV1Nmip75h
+modeled 2JoMYsoqPvm5OIYp2RuEhfZQ0SzFLyEP
+key's   1AHgDwbT4WoUT0nJE1zyyu8C5JhN4zYL
+recessed[8CntlZ32lSLyhyX21DqHvTwBJp6BVHLCbm
+licentiously    5TVONchNtOm8uQyybpzWFNI1lIdxJbYQ
+salutation      PV20UGT4GEHlF11NJgFzyZPeT3RkxiDL
+labelled[8CBdVmrNzvzAM7G47EhxrFkxd9hfchtE4i
+audiences[7CAdvDd6HF8KictHdVtLfLwLrDhbogqaEW
+embalmer's      zblqYsZ2JHSzaCc2fl3uqBOEiDKQVlXw
+needling[8CzMdUEhihTijqLyN6V7S9mMIvnJ9jt0Cu
+monogramed      R8smDnlpgk3f80v2qYNVxm25p3sMwlfv
+hades   vJB3LlamwpFP03rVWHlNxLZGTPxx2ubV
+digitization    GP7hedi0rXHE3a7fRz24meKMGgZccHf5
+walnut's[8C2DYRjpmpEGgPMWAIHF7uOSsPjUtrbHfa
+accidentally    VeHUb561wIaLx6qJJYGmwkUilvEdtODR
+olives  Z7nfZ4BLe937w1DOhbRyLOwAlA2XCjF1
+gushier CH3fv4dX1VIlpB1Mj473yVMOKxNxl20y
+foundations     kNwCQUpnU3lyTOU0uINLZEyYjZJMwnH1
+models  rMnRWkzFveh46yjbxdorip9VSRF0BMGM
+cliffs  lYobhRGYoe4IEVbC32QaKJIjgHGt7vU4
+Vlad    tOsD4EVdD2YHw6F8cksoxvA03DC6EwuQ
+Excedrin[8CXA6SQsN9cZxlbCx8w9XMuHnkPHECPGED
+Ahmad   UJdpCRVOAdQyRQUdMtfLtrrDz9cm1BVp[51;161H1,1[11CTop"data.txt" [readonly] 98567L, 4184396B[1;1H[?25h[27m[23m[29m[m[H[2J[?25l[1;1HMindanao's      N6PH8LMO9bwicZlWoAkzmXHivNph0UsV
+moonlighting    7NqUrjLRdToIv0pxJgoZveXlPN4Kfx4K
+risen   MUk0Vww3HmveUw0grbjFtV6QRhw5tmaL
+glop's  sF01wdNNxDWa3UquN5rRnhV2lvU9DofK
+Adderley's      n7LQDp3GWWguDTwP9ZIH3DsuHa4vFW4i
+barberry[8CQgFmTjWmyxLoMXrraX8a2Jatku6U1WC7
+overshoot[7C45LcdW8ofL1oy8GBIIIevJd8pQuvw8Nc
+Troyes  PZUo5R7l5ip5ok7w38AWpJSYwwsKApAd
+murderers[7C0iKPh9qtUqyPPS6qyDEqJhZffvgCcOTu
+disassembling   EwSD7dTAXMYDOrdGwcSCMkvVZtcK4HtP
+sponged bTnaglDO1cbrSJ76dYXYHtLojudlSuC3
+veriest siqpG3qpKGofUj3zkvwuGw3QPW5TKdp9
+crosses bNeX5oGAf3gRgVAssBOI1XP3Uv3fULaE
+host    LRjaFXnVoCvnicukDqMlDEFbwQP22QcR
+Hatsheput[7CMZJ2JhVcWaCQhnfKR3Zxprtlq5OH1dac
+bribe   rMDdUnrU3C98M6X2hITNDLtclGaxujH6
+innuendoing     LuG8TDrDpMrCrhh0qo0fmE9FqC5Hpz8l
+diminuendo's    WQhGZ6Q3TwdgpG4Mb4sctJ9ZSPvf8a0p
+Iquitos r0CnpvSZLEFl6EUy3yEXbTygBDqgFnCN
+Ikhnaton[8CDugTLBNTUSaYp2AJn0sBof4274gHkGTl
+scaring wHGU8TgzqbkH4779kQkGq50KVTQAPIWz
+Rourke's[8CqT2slGEjSw1AbAgbWU8v2aFPPWnbZCSs
+compensation's  gyJwXcL2e4Clk6KrAbFjBOh3kwjnyzSF
+tadpole's[7CpGYLn1zZ8KC4OD8ouqbtvJMyKdk3oxNB
+Lombardi[8CmZEqu8VtejytTWsFQ7jCBPc6IG86RtS3
+seduced kK6EDfyR8DYyjGAkpKFfcAfIWhjOuElg
+Charleston      sEgVPZS2WQIUn7WoJfB7B5fPuN2yT5ns
+washtub Cp5g8GAxFvlWPhu0qkP0ibDV1Nmip75h
+modeled 2JoMYsoqPvm5OIYp2RuEhfZQ0SzFLyEP
+key's   1AHgDwbT4WoUT0nJE1zyyu8C5JhN4zYL
+recessed[8CntlZ32lSLyhyX21DqHvTwBJp6BVHLCbm
+licentiously    5TVONchNtOm8uQyybpzWFNI1lIdxJbYQ
+salutation      PV20UGT4GEHlF11NJgFzyZPeT3RkxiDL
+labelled[8CBdVmrNzvzAM7G47EhxrFkxd9hfchtE4i
+audiences[7CAdvDd6HF8KictHdVtLfLwLrDhbogqaEW
+embalmer's      zblqYsZ2JHSzaCc2fl3uqBOEiDKQVlXw
+needling[8CzMdUEhihTijqLyN6V7S9mMIvnJ9jt0Cu
+monogramed      R8smDnlpgk3f80v2qYNVxm25p3sMwlfv
+hades   vJB3LlamwpFP03rVWHlNxLZGTPxx2ubV
+digitization    GP7hedi0rXHE3a7fRz24meKMGgZccHf5
+walnut's[8C2DYRjpmpEGgPMWAIHF7uOSsPjUtrbHfa
+accidentally    VeHUb561wIaLx6qJJYGmwkUilvEdtODR
+olives  Z7nfZ4BLe937w1DOhbRyLOwAlA2XCjF1
+gushier CH3fv4dX1VIlpB1Mj473yVMOKxNxl20y
+foundations     kNwCQUpnU3lyTOU0uINLZEyYjZJMwnH1
+models  rMnRWkzFveh46yjbxdorip9VSRF0BMGM
+cliffs  lYobhRGYoe4IEVbC32QaKJIjgHGt7vU4
+Vlad    tOsD4EVdD2YHw6F8cksoxvA03DC6EwuQ
+Excedrin[8CXA6SQsN9cZxlbCx8w9XMuHnkPHECPGED
+Ahmad   UJdpCRVOAdQyRQUdMtfLtrrDz9cm1BVp[51;161H1,1[11CTop"data.txt" [readonly] 98567L, 4184396B[1;1HP+q6b32\P+q6b33\P+q6b34\P+q6b35\P+q6b36\P+q6b37\[?25hP+q6b38\P+q6b39\P+q6b3b\P+q4631\P+q4632\P+q2531\P+q2638\P+q6b62\P+q6b49\P+q6b44\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;155H+[1;1H[51;156Hr[1;1H[51;151H      [1;1HP+q6b68\P+q4037\P+q6b50\P+q6b4e\[?25hP+q4b31\P+q4b33\P+q4b34\P+q4b35\P+q6b42\P+q5053\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;151H    [1;1HP+q5045\[?25h[?25l[51;151H/[1;1H[51;1H[K[51;1H/[?25hm[?25l[1;37H[7mm[m[51;161H1,32-37[7CTop[51;161H[K[51;3H[?25hi[?25l[1;37Hm[18;3H[7mmi[m[51;161H18,3[10CTop[51;161H[K[51;4H[?25hl[?25l[1;1HWittgenstein    sjwzQbB5xi1Uxpv9lRZIEUQNQ6k8Dalg
+sands   XsWPIOEHShYsJPWdfxcsLIlax9lTAukt[2;41H[K[3;1Hhaphazard       1oN5lzQJyVTsrSDM749b8MIbdnGJfBeu
+patriotism      KqOJmVK5EqWiQCulBcVwRUR3vi2Ue0wH
+Colgate's       43djfdZY47sDKDPojjrmNibcaFclAl2I
+immobility's    6Wppt2LF9M2Livv6GzH6JmkFyy1N9Rax
+Blair   xUY6tprOZhYMg3grmoomNKhgFLaM9bYA[7;41H[K[8;1Hpolyglot        lYrH729LoioX2hvTdWxzzHaWDUDsVv1G
+interesting     D2LWDkjacL2GrQgDDzCLoeWmEuRGCDqh
+benefice's      MDaELD8zthbDH7g5oTB6QMr7uk3z2Bbv
+regulates       6GoqKIbd6GQK3kWYglY0nwpmZsusj5kQ
+Terra   NUiowKpIWFZ7gt3hODepxySuaOiMfOGn
+retrace NtAIxptExLPORFWNtEjfhtEmFhaUpuEw
+slights rZKNI7NnD2hhpke8JztJ7qA8NKOzLIbh
+leis    hX6yOWvzE3LiUOEuITg6Isoij0OOFSHp[15;41H[K[16;1HStewart's       PqAZ1HzThU0ajkZfIMHjUVdfbArCutzp
+fragments       iWWlMrKalTJ7dq4m4cGDPBJxElLamdxk
+remissions      LSN6R8xaqJgjAgJFhvACXQQZnxfkcqKe
+toothpaste      2CBYkJofkra77mpSCd1gAbrbRMpAGCFO
+scrap   1qrR6oJSaTWp6w2hdJl0dc32rN42rbf3[20;41H[K[21;1Hprudery I5ZEbq3NRFr4LDRPpMTO2SyFpsQ0uIb8
+inviolable      FuJvvhKzDEHx8czXA0OURitpz5JZjGHB
+fluorid[9Cc6YJaSwW527bZ4Ub0M4amG6sX511JJHf
+engulfing[7Cr8TtomaoX4KflwGWlV4NPrjNnlcxYWAC
+para[7mmil[mitary    i0o2LruTrk0laDPK8J0aIkId3XgPD1yA
+want    jEY9zeofyJUyZKMBDCrLboiytnB9RyMu
+intruder        afNgu5NGbcfgqC19dyjZJVzAUVT7nkve
+postmortem      T7AJvEFHX5SPbRBmOGXPlKcrqycmbgCO
+Grady's aNdpwKfrHuSQHWx7RrDTrfrxTRbGbLJ0
+frigate L0Smz886C3LiZ5nOnvNZsXT01WblDeb1
+hobbling[8CF0Mz9rA96aixiHlQ7TgiMigOlgBbG2MR
+against 1QP61OjOanpZkHnhrCrC0CrvLBfUdWyj[32;41H[K[33;1Hcotters J8yb5GaGG4TnBGNKj7vH1m9D7LJ6VQzr[33;41H[K[34;1Hpeons   s6y5NMAlpJYxQmynWzm08yRDHoHlxAFf[34;41H[K[35;1Hjimmying [7Cxt7PJXS9iAVLmsDW6nQwqT74YvJlE1FF
+horsehide's     1CZphM4VyYx9NuLaerdbAA0F6yyaR7KQ
+restoratives    6dGNGThRYwMdk5MDY2KgTlsuWJee3q7H
+redrafting      spgf4Ruo5Bdy95q6ifzS6hdgJG9Im2u6
+pans    NKlWgqv5vrC6n0MjTTN0D16F6yjwDzdj
+underweight     mw7F2fW1lHV7M2rbIJAsJFYHra8M2bJH
+eighty[10CAmev8xo3hCAH5BRZFi7JLU3i6rJQtbQm
+poppies tN8DrXpRDHQhacCUV6KybpDylH1mRG1f[42;41H[K[43;1Hmoray's PmvRqMe1M2ML8PHAVi5NrdoPpo1KiPY5
+desirably       77Sww7JtAA6reiJbFb1V2RCcDeVUnAFO
+humiliated      OavaqvXwS3cgLc3A5a5NfxApCEanaKsX
+dicker  Ewrk8HgBWVpU3aWabn0IJhDavDNXidaQ
+modifiable      iO01t8TOoOGV8D0FZQ90B5FeTPy5XoqJ
+draftiest       uWIkozKdiTg5ag4RNaSxEjp7FoEQNBUy
+truculence's    PD65DVzPb839rQ13sP4e3QiF3GtCBoMx
+urbanization's  tM83qIBp6wVL8Onu8w0AmncHZYoiUkSF[51;161H568,5[10C0%[51;161H[K[51;5H[?25hl[?25l[1;1HOrkney  l3Tl0hbZECFCbpAr0l4V8mziKdKayADO[1;41H[K[2;1Htrombonist's    HgrTsDTn5TzXda1NRivqIQsqLhDhaBRN
+Fresnel's[7CIoNquhXCKgDGXQy4v6wJQ8Rp8S6SQmod
+riddled cD8Rt7X7OZNJ0qkc54kgRT7IsRBA20nL[4;41H[K[5;1Hhearten SK9JEJrLABl1wuoWUjI2sIBlqjS44qdE[5;41H[K[6;1Hcamellia's      IKbOEpLk2lrfzPPZOmo73E1dEJssCHGD
+translate       pQbqQeorP4Z57i2XSiX48yJYIzaNFYNW
+moccasins[7Cu3eapKlS7YnTG9rJcXdBM99tob5WNAVr
+gangrenes       fZNjKkOxthSP1g1zh5U8UbMhnGehkkJt
+hit     LUTEqOOZmsv6xDf7o1kYyA6hbvekXfEj[10;41H[K[11;1Htrounce a3y3cEAKTgsSyWV6QjcbYJDQ79PeOIpb[11;41H[K[12;1Hfifths  XmoyK6iAiawlU9ASF2hvVQSkqEAm6Xsw
+protestor       LDT37X68wJtXXj4FJcK53eNjdKZirMyu
+riffled WdGan0BaRoqDHVT8LFPYOjWvZO0G5Oxu
+iguana  R83uvVxMauqjIk9hqllL4ukX95KfzNMP
+kindnesses      Dxjg9WIPF5sz7MdCFUocxhWAy9faODhY
+bastardized     MSkskE6ABG25GAL2w1YFrVqcXh49xT5y
+enamelled       NGprR0IyU1ZkbMZtJIylroo6ElPHYwFD
+wiped   pA1hMEgoAAuTB6YiLSvTRN74KpicvXfQ[19;41H[K[20;1Hhomeland        f20rTgH0AAtIXhxRePiW2ggf12Ow01vF
+dustman's       ZOTKH5szR8QWL691rXHrATgFm89XNt78
+arias   Ji19RlyyQUr6ttTfBZH1KBeLpaXjv8Ln[22;41H[K[23;1Hnoblewoman      O7PPP6tT16tiBuFpXEHd3HzDWt1lefdt
+infringing      Fz3Xbss2mmJGs7xh9aoYG8lz7xZbM2Pj
+[7mmill[m    IDoqdCjk97Gj6PBosEnoeLSUl5Ftunax[25;41H[K[26;1Hode     5e3JbjXMD0Wr5gNsSFldDtqgpqN19DOb
+barbarian's     BUBwSMae8aPdKpn5MXkwQXDNrlfbnH2W
+antidepressant  v2DxIMuRqatDzoLdPZNzr3EjaN6L5SuZ
+J's     4WDGcVxwHZewgjhZ3I4dDgOkwORHKqOq
+conquistadors   VCAcGmQCKGuOJQ6G7dcE6Ifdl7t5UyBo
+disqualify      CP05OMxDc29sIQF0Hh1ogfkLXoPkEJNs
+Messianic       2BkQPJkxv2OQBwVlKLSfkgDySU4z0EVE
+Mallarmé[33;9H's      pWwqv0t8BvBCkXZIrBe7DXp8LMI3346l
+poverty's       1AZR2w1POFK9L99v0WZbuasVbKzUfkHp
+radiator's      ly51PJbO3ESyG9BYJNb7dsV2HZjkw9qp
+crackpots       ouGldn9CXpSlVsCLapbhHTXadnAWxPWJ
+dittoing        uYnbESmaBpU5HMZEb7SRq0VSjCDlDYaU
+inscriptions    Xy4JR53J0knxGsiSb5rmJNZUov8Y01gU
+Fairbanks       VWrD2kpuxkooYzqy493Mzg6e9whjaFpz
+kebob   z3E5PfRsQQi9uze4JZBxzQP3ymMOProU[40;41H[K[41;1HReginald's      NTrKcp6ZTClxHGQpPayF9ngv10T9G7Cn
+relocatable     OoPUoj0fs38LBYei4fIZHgUzgXXRR6lr
+piecing kdaStQrmj0w8frJb3fq810Cn3lB7o7FN
+letterhead      CUmAA1A9mrL9Eb5SxoKInz4i2jXUxaFE
+widest  jFv0GiZv8WTB9lBC3aU1AdiOgSgbrNgz[45;41H[K[46;1HBonner  lChtwPdFyLuSWb72rogb48Otmp2sHOlG
+ecliptic        N3NhZ66qVZ8QmH1RU1vMLk3x1PYrxUOq
+affronting      SW3Tm7AsKNk6qdq1tOoVaa9JImDW6B3G
+yawl    dI4aC3n8iPqvjKpqBBHclhJs563beVQJ[49;41H[K[50;1Hbird's  8hFohIkIdQZKvJH7sbEGmElRgEfOPPZ0[50;41H[K[51;161H2034,1[9C2%[51;161H[K[51;6H[?25hi[?25l[1;1HJahangir's      i6DL9Tv3MvCSP6u18ur1s7GRKPUVlWfD
+Nestle's        X95FEBHYqjUQj1o3bfRXX8R1zYBtVzhM
+flycatcher's    T0ESTTgSNZh6PSeECTQDQbEl17yjk4ZN
+compatriot's    jgeHPTxiSx8t9zw4ngun0kIpzhXWnyLc
+Montezuma       j9M5dtRg7fzlaZEBptSTMjjjWHcbFWmf
+Elijah's        SVisJNvyfoSnZLwqiGLZZPpgGOZoggGO
+Alberta's[7CT4YOKti0HsmxpUReTtIWiEdkDHzMH9gX
+flatfeet [7CKJhUTUuKIVmJd1GqbbP05LqURcon0sjD
+oceanography's  2h7GCGhZQO9Qy6pHbQlHaW8y64UQIqAU
+urine's gGJ11e97D6xzMTKcHu9SKR4OFDDnl2Tz
+Abram's vu6F57DRjbHUPR2iHjYDinKQ9SF27zUl
+egged   FlAIYUgvrvKmpzpaTFDiKamrBbVRCDFm
+wardrobe [7Ct46EjQN511k7qAUw0M07p3zMNHq9k4FJ
+buffeted        SjN5TtJLOyTJVVxs5pGJpDEk5p768CcV
+Chase's nDanJbJ5K6mMoUFee7XcrefhCKcjajVk
+engraver'[7CPbhvXyT1vKdKyBn9Xzg2qWwie9ghlIec
+muskmelon       ZSA23Nt61Nb0s3YkHXT2LYJ9Nx79ZZIY
+crinoline[7CQKm2nWycz2IubTcNBdLH0Ph9Sa11P2it
+tike    91BbKUcAgQ310t1YWYYt5hIluzsV01DC
+offshoot[8CEDMWtr5Jg4ZJL44IngH568fiQ6iM90n2
+garishness's    X1W7bnlJpzoxLn9g70a7FaKdoAyURVOO
+goddaughters    KYScExOLQGDXNDUwgN3qIZ5tqt9evsZH
+Deming  V1lns5Zc4bik2v5oAmjhjJjXwhSPYQD5[23;41H[K[24;1Hshrewdest       RukEohuedqm8D1I2uKCxlgijz32n91fm[25;5H[7mi[mpede's     INrO4xDCEKHI85KHTRBao9RonaGajvrY
+abstrusest      pLCYRMVo7QOD29MuUUjuuKR2X3b9vDnV
+shelved fvVmQpeDhi1xh5HNi6qp5aM8nmhLn4PO[27;41H[K[28;1HGilgamesh       H68Tp9HsDLCmRErafSuuIGkZ8a7aujkH
+talc's  Bby6fjPb0cegAe7aqQoR2YvSeUMETlZv
+slough's        KpllfsyMFf3BCVWPtiaZA7cAYuCtfpPd
+eyestrain       hzGRx3t2Nla8949h5rVY3s4QPYOVWv1c
+salon's uJzgWenh6glnSheeCsT5HVGyKl1iSRIc[32;41H[K[33;1Hchrysalis's     TUMkFjtOiZMo00ylQUS6zoyIW3cSyzgP
+backspacing     Jd5vHu2I5X13UA8GXSNAoqcXWUnQKg7d
+Mohawk's        xeU3NajnEcxJoEgLMdlJ8Nh3GQQYqlIP
+extenuated      kPOfOjZn13kh1fQ2q9moE0QhEZ8rHyYa
+actively[8CvUlM03FNelxqjhbK9JIJLQw1vYMsxoQO
+haughty iIorrH8kgxdwAYDB7qt3mZW1Yo2xM19s[38;41H[K[39;1Hcrossbow's      QBe3X3dMLqNhFnq94zriX1eHnHsMdzno
+larboards       1eOvUCuA2v7YZbtIEfDecVGcBrtJmbPZ
+Muscovy 4o87Qd0PyY40dmIY0bGgx5KaW11poBMp[41;41H[K[42;1Hfiled   S6m1kGU0MoxU2k0St6Y2YuOJpgqaQqMG[42;41H[K[43;1Hsecluding       OEkVzgLF1iApcg252EXSf5ULmMAXwJvW
+consecration's  9smSWX26XSdcOixnlEFX3kjIYCRvxtUQ
+stable's        xhM4XaqN9GBgUX0RRcuHV0d4FGkZvhd7
+log     OUD1hAucU1czHmRkSB149uUrsJElJxjd
+defies  eyHoddfbqxq0AyVvqUGzN5ocjut9Pe9A[47;41H[K[48;1Hlocoweed's      1bAzOasNtmSnzkvaWxhAOmh2xUm2BoFL
+executable      MQ1LLstzNdRS5wl3qm51OuWnQiKKn9Z0
+influenza       MCSI8nYixcJ7DazY51Nob95qHpD0M8uI[51;161H3241,1[9C3%[51;161H[K[51;7H[?25hon[?25l[1;1HCamel's Vj2etxCwkyb4cTJRKtCPcFcyIkbOwa9i[1;41H[K[2;1Hdrizzlier[7CnU6f5BL0gi9XD2Lehhwvr4SCG2lTxMk4
+dandle  pyoHlQN2daLGSqeCeTZ9ud7H0jAVMIZb[3;41H[K[4;1Hadjustable      h1TSQeATa8YBeyzbvgSFiQKVfC3z5152
+sword's xmWd1J9gmUQWoOHgU9OZpBeHXy5uATXT[5;41H[K[6;1Hobeisant[8CprVo6aBF29PZuxVpVZjJoaQkx0PROvdy
+lever's iKWryWc0vqi4nAO9gk7EX1gmB542tNFu[7;41H[K[8;1Houtperforms     NrJz3foTHCbhgDvKH8VDQIOZKoA0T0SB
+penitential     sOmd3bBbYvIPNldJjyeDf8K5UOhs4Kd8
+resounding      MiH1YXFxDrRK1mf7QtVjE5kDWCdjJj78
+Pantaloon       r9Hby7oWWmlujcmj0lEGmKAZRKPlr7KM
+drowsiness      q6Mp3WrGvP4gzz29k1nf0Susk3Gex6Z7
+Barkley xiXPhBm5DnwMMNCQuIACDqZn6Ogstttw[13;41H[K[14;1Htrod    Kf0RjWbzDX57LSLuCtiGMY3iDxUKlrt8[14;41H[K[15;1Hapostrophe's    ToQB691DMA0WlfuhPMqed66IZ8X2Hvvj
+undersign[7CR6iWuIY5ifpE548zITbgjUSS8CZokbmg
+convulsing      MYpyyfFqBH7ki0CNS3eQvUR9jqOlDl03
+kenned  6JtNa2vxnYioX73NesVbMQJdGEdJcTFo[18;41H[K[19;1HIlyushin's      zVkr50MOi45gVGi3XQRAcIGZrN03Mjsb
+Revlon's[8CHKhbLMfznzXDRf1cU1yR2GC4JoJb8dSW
+bereavements    k5ttJWg59T5zKC8M1u5k82kMO2wKbZIG
+relic   E8di8Tn7BK4duzDmPTfwTPGGrWzqc6wm[22;41H[K[23;1Hcontinentals    ryoVPZ6OEak3LTfC2wlYGiuoWshQGHmV
+jocose  zX9ff8K0FdPlwDDWbARKs8NwNz0nnmgQ[24;41H[K[25;6H[7mon[maire     FxvVNro8nIJzsUF3FIm4sZDVmxDZKwkA
+angleworms      KZuKccxyOP8HALBUl3g5tpgVV4jPSAMZ
+vaccination     KGkeiyYpLpxkqKB5r8wCylWnGnpAK4OQ
+confusion[7CU4dlN7rg2v4XSK62RL9xn7heG1lZ2p3b
+hayed   BTI6b4lRM6hkbBnMGHlNhnMLeUSSA7GU
+wheezy  I2hohyi5QqL0vKYpYYGUP0N25N6QxGJc[30;41H[K[31;1Hgondoliers      lug73jufTpIcDPTK7ajjotGNTaoirxWE
+cacophony       EpoOR7iB4YIxGVJE4UWx0OYzD1bxCIWs
+conservator's   hxtgTqtRmuppw9Sz6ugpW07jS9WpOSwE
+guitarist       idrhMuoVoqsigeCdkZCDAwaW0Ug8s9JJ
+Kipling's[7Cz7pYEH6cY79eYQMJ5iNhpC1Lcm98oBkT
+cleavage        VkJr13K24AcmK6Vewvl0iEE9BbUI7VRP
+Emory   hLqfgqpdE8tUCwaklbgFlleYHi1Ijjjk[37;41H[K[38;1Hreign   yuzeePgWakcQZoaQkQKqEhU6UIeWijeZ
+crowbars        TKgPl6nUkyNmgVWfveJpuMbhMbAra08m
+crops   hVMEsDYO9YMbBYg74UC5ve5TZphJZm4j[40;41H[K[41;1Hshelves's       PW1zmDsucuPUwUhHUIercnFeWbszQmSH
+wefting 39ntBJ3NT4keAuLp6GVEk4NjJ3aRRJoT
+misusing [7CLiLaWvxgFvvr6o1NmsCOZ3wc4PBiGJp6
+bowls   CzBNgv5Ab46RXhVIaIr2UeNX0HVHx9AN[44;41H[K[45;1Hcatharsis[7CfLGl94faiBpjNW0TcRS4MrslNlgCxffJ
+Forbes's        rpcaGR5LGOw4B5YzpNiLtoL9dreTrC2F
+foolhardy       L1LRYL2svi377KhFEsmsVUs01dXHJ4AH
+Kilimanjaro's   U5I5KDpaufxaAEPLSvVr42fgj7srKNBx
+manning p6U17i7srlJnnFH1bf1rUi106XvbKt62[49;41H[K[50;1Hwaiving KqWii2YZ1xJj0Wsrgv0MYrbnewz4XsbA[50;41H[K[51;161H11829,1[7C11%[51;161H[K[51;9H[?25ht[?25l[1;1Hmultiplexed     xWTNlkREpijeu8h7Y6bTD7i1QaDG43w0
+swordplay[7CSTs1Pl7TShbzMkbZQxwiGUf2juZT1l6S
+lyceums HvmWnef0P57Go1eDLnzrwD5zHRC9LGlx
+schmoozes       BDIJALixnoSWFzPnngQiLcpct7FotZUr
+Dec     UWcnaVhu7FTfkpBNvZ9gXuIzTbTjrLbh
+harbinger's     BlJJrTyQi4NlJ8R77JY8KI0s9aUDI8Wh
+ascribable      2OboZ22hOOj0sMovKY3sue4Bo6VuoCjX
+abashed 385PH4wv5jVCgmFHu49ouQbZNBAYhfzJ[8;41H[K[9;1HFrontenac       MZ7M7j3xGxWgsBudb8jLp4sqJ8E4VJ5Y
+shipbuilder     wbr0piV65mdbe8ZORFXbmC72hintl1ak
+torte's H4YsH8M6xppdwpz1eqkJC1NXM66wigtf[11;41H[K[12;1Hbright  aGgKszGVrJhfuEYLy7QZpPEUY5p2uCUf[12;41H[K[13;1Hvans    ZaBiLVDCDQYk5eigLuIt5TpPT4xuneNP
+headhunters     mnm3u5KyNRDXLe921GHfSv8sMJQQ0vib
+gosh    CNq872hmZWNyck5VF5F9Qa797wKAicF1[15;41H[K[16;1Hsteel's Ide43QEgNTtgeDGGjtnk84QbGA1SMsHA[16;41H[K[17;1Hstreamers       weld1jj75gqtLnCs1G6cKWHbuNjiVLWg
+earthworms      3ETmu9KyV6T64jGGCRXmopNbC8mD78Pb
+Birdseye[8CBNRl0Qak9wtT4GP80YdX3uDI1R4bNJyx
+ordinariness    Xctkcfb9L10zyp2lTBYpn1FSW4PL4oex
+sympathizers    Sl5H2Zq8jgBVBwihkhomnqRZt06poGjA
+outdistancing   wO9CQzTYR3gileCw3dzUq71imaiXBrfZ
+staidest        wDEFHeM5S8UnykD7SC1NVosNFOhTY8cc
+dysentery's     XyZnm6ewXxLTYmcAvon3nmPfARLbryWr[25;8H[7mt[mh       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+Tienanmen       0ap2HFow5UduRNQRv3crvED26nNSH4Xn
+forestalled     tfE1qhvrAhy7QH66HR40tTThrLj4YiBT
+sealer's [7CxP6eECDobmDEWvwYvLmvWi1KfODj0rfl
+groveled        Fy23Vzm4NV4nSfjpLsFsc8tji8vHi3nR
+marvelled       xG7lDt4WkzAITSNOgXL12YjF6BX2oLDu
+humpback'[7CufBMdKBDJ96danK4DD6yDosP9ggxFmLl
+provisional     6pMCDvbY5hBKureuDXS1GY2JQi3CdMoM
+tizzy   GUFDC2pM75lsoQ9WuOXP6mewRyibKmhN[33;41H[K[34;1Hfinalize [7CIdTNOx2We4Zd9htMnO19A7dYrecwKiss
+escapism's      MYr2813GRs2J7DSGp0zkLQ7iLOifI9b6
+merger's[8Ck21hBcx3QmfMcFF8idNuhBPArLDSe8Xe
+Thames  V5Vu8h2BfWmTqlxX42Aprrrr9q9hLKfr
+necktie's       tMuwWE3g8va4Hjx7chEOeVokJsWFbn6M
+skyjacker[7C3G4yHtXP14JAtZ3SJ9N05JIVnnNMMJt0
+Vanessa KyIV8rM5I9iWrqSwuHHHnKB8r0dy5Rvp
+Vilnius Ubb599bcOsI4nlGvKXQmjikBCwdphZEA[41;41H[K[42;1Hsurfer's        AiMKGv9xTBRewOvht5tndKKhgjHTWX4S
+elect[11C1cFAdFOQirEu6xpgA2p2D9282bH5LqjR
+palavered       DsBtugplhTb88isQafFAkPD3FVtBBkhZ
+newels  8hKDuwLx7y5aijn1wqRerDNKqSzQDP1f[45;41H[K[46;1Hpunished[8CQjW4RFDrxKuDm2g4T8GytgWQs2IHZ0Ij
+restfulness's   ETmBRLmnuHgN57ptzFhxcdV9sAO98m5x
+bodkin's        RNicR3XiwuMyhVb2yawLlkJZFuLWBtsz
+Nigel's 7hDXgtEH4i3t64hoIDez90dytdpGLoxm
+O       FVLTiip8DigEi4CiuzjPu3ZRwLSjQvhL[51;161H37812,1[7C38%[51;161H[K[51;10H[?25hh[?25l[25;9H[7mh[m[51;161H37812,1[7C38%[51;161H[K[51;11H[?25h[?25l[25;1Hmillionth[51;161H37812,1[7C38%[25;1H[?25h[?25l[51;151Hv[25;1H[51;151H1[25;1H[51;1H[1m-- VISUAL --[m[51;151H[K[51;151H1[25;1H[51;161H37812,1[7C38%[25;1H[?25h[?25l[51;151Hj[25;1H[51;151H2[26;1H[25;1H[48;5;242mmillionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc [m[51;165H3[26;1H[?25h[?25l[51;151Hh[26;1H[51;151H2[26;1H[?25h[?25l[51;151Hh[26;1H[51;151H2[26;1H[?25h[?25l[51;151Hk[26;1H[51;151H1[25;1Hmillionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc[25;49H[K[51;165H2[25;1H[?25h[?25l[51;151Hl[25;1H[51;151H2[25;2H[48;5;242mm[m[51;167H2[25;2H[?25h[?25l[51;151Hl[25;2H[51;151H3[25;3H[48;5;242mi[m[51;167H3[25;3H[?25h[?25l[51;151Hl[25;3H[51;151H4[25;4H[48;5;242ml[m[51;167H4[25;4H[?25h[?25l[51;151Hl[25;4H[51;151H5[25;5H[48;5;242ml[m[51;167H5[25;5H[?25h[?25l[51;151Hl[25;5H[51;151H6[25;6H[48;5;242mi[m[51;167H6[25;6H[?25h[?25l[51;151Hl[25;6H[51;151H7[25;7H[48;5;242mo[m[51;167H7[25;7H[?25h[?25l[51;151Hl[25;7H[51;151H8[25;8H[48;5;242mn[m[51;167H8[25;8H[?25h[?25l[51;151Hl[25;8H[51;151H9[25;9H[48;5;242mt[m[51;167H9[25;9H[?25h[?25l[51;151Hl[25;9H[51;151H10[25;16H[25;9H[48;5;242mh      [m[51;167H10-16[25;16H[?25h[?25l[51;151Hl [25;16H[51;151H11[25;17H[48;5;242m [m[51;168H1-17[25;17H[?25h[?25l[51;151Hl [25;17H[51;151H12[25;18H[48;5;242md[m[51;168H2-18[25;18H[?25h[?25l[51;151Hl [25;18H[51;151H13[25;19H[48;5;242mf[m[51;168H3-19[25;19H[?25h[?25l[51;151Hl [25;19H[51;151H14[25;20H[48;5;242mw[m[51;168H4-20[25;20H[?25h[?25l[51;151Hl [25;20H[51;151H15[25;21H[48;5;242mv[m[51;168H5-21[25;21H[?25h[?25l[51;151Hl [25;21H[51;151H16[25;22H[48;5;242mz[m[51;168H6-22[25;22H[?25h[?25l[51;151Hl [25;22H[51;151H17[25;23H[48;5;242mF[m[51;168H7-23[25;23H[?25h[?25l[51;151Hl [25;23H[51;151H18[25;24H[48;5;242mQ[m[51;168H8-24[25;24H[?25h[?25l[51;151Hl [25;24H[51;151H19[25;25H[48;5;242mi[m[51;168H9-25[25;25H[?25h[?25l[51;151Hl [25;25H[51;151H20[25;26H[48;5;242m4[m[51;167H20-26[25;26H[?25h[?25l[51;151Hl [25;26H[51;151H21[25;27H[48;5;242mm[m[51;168H1-27[25;27H[?25h[?25l[51;151Hl [25;27H[51;151H22[25;28H[48;5;242mU[m[51;168H2-28[25;28H[?25h[?25l[51;151Hl [25;28H[51;151H23[25;29H[48;5;242m0[m[51;168H3-29[25;29H[?25h[?25l[51;151Hl [25;29H[51;151H24[25;30H[48;5;242mw[m[51;168H4-30[25;30H[?25h[?25l[51;151Hl [25;30H[51;151H25[25;31H[48;5;242mf[m[51;168H5-31[25;31H[?25h[?25l[51;151Hl [25;31H[51;151H26[25;32H[48;5;242mN[m[51;168H6-32[25;32H[?25h[?25l[51;151Hl [25;32H[51;151H27[25;33H[48;5;242mb[m[51;168H7-33[25;33H[?25h[?25l[51;151Hl [25;33H[51;151H28[25;34H[48;5;242mF[m[51;168H8-34[25;34H[?25h[?25l[51;151Hl [25;34H[51;151H29[25;35H[48;5;242mO[m[51;168H9-35[25;35H[?25h[?25l[51;151Hl [25;35H[51;151H30[25;36H[48;5;242me[m[51;167H30-36[25;36H[?25h[?25l[51;151Hl [25;36H[51;151H31[25;37H[48;5;242m9[m[51;168H1-37[25;37H[?25h[?25l[51;151Hl [25;37H[51;151H32[25;38H[48;5;242mR[m[51;168H2-38[25;38H[?25h[?25l[51;151Hl [25;38H[51;151H33[25;39H[48;5;242mo[m[51;168H3-39[25;39H[?25h[?25l[51;151Hl [25;39H[51;151H34[25;40H[48;5;242mW[m[51;168H4-40[25;40H[?25h[?25l[51;151Hl [25;40H[51;151H35[25;41H[48;5;242ms[m[51;168H5-41[25;41H[?25h[?25l[51;151Hl [25;41H[51;151H36[25;42H[48;5;242mk[m[51;168H6-42[25;42H[?25h[?25l[51;151Hl [25;42H[51;151H37[25;43H[48;5;242mM[m[51;168H7-43[25;43H[?25h[?25l[51;151Hl [25;43H[51;151H38[25;44H[48;5;242mL[m[51;168H8-44[25;44H[?25h[?25l[51;151Hl [25;44H[51;151H39[25;45H[48;5;242mg[m[51;168H9-45[25;45H[?25h[?25l[51;151Hl [25;45H[51;151H40[25;46H[48;5;242m7[m[51;167H40-46[25;46H[?25h[?25l[51;151Hl [25;46H[51;151H41[25;47H[48;5;242me[m[51;168H1-47[25;47H[?25h[?25l[51;151Hl [25;47H[51;151H42[25;48H[48;5;242mE[m[51;168H2-48[25;48H[?25h[?25l[51;151Hl [25;48H[51;151H43[25;49H[48;5;242mc[m[51;168H3-49[25;49H[?25h[?25l[51;151Hy [25;49H[51;151H [25;1Hmillionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc[51;1H[K[51;161H37812,1[7C38%[25;1H[?25h[?25l[51;151H^[[25;1H[51;151H  [25;1H[51;151H^[[25;1H[51;151H  [25;1H[?25h[?25l[51;151H:[25;1H[51;151H[K[51;1H:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[51;1H[K[51;1H[?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;m[?2004h]0;bandit7@bandit: ~bandit7@bandit:~$ # F[Kfound the password as [7mmorbNTDkSW6jIlUc0ymOdMaLnOlFVAaj[27m[1PmorbNTDkSW6jIlUc0ymOdMaLnOlFVAa[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K, but vi insta[K[K[K[Ksn't permitted, so we use grep?[K[K[K[K[K`grep`
+[?2004l[?2004h]0;bandit7@bandit: ~bandit7@bandit:~$ g[Kgrep "millionth'[K" data.txt
+[?2004l[01;31m[Kmillionth[m[K	dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+[?2004h]0;bandit7@bandit: ~bandit7@bandit:~$ exit
+[?2004llogout
+Connection to bandit.labs.overthewire.org closed.
+$ exit
+
+Script done on 2025-09-20 11:38:26+00:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,396 @@
+Script started on 2025-09-20 07:17:58+00:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="178" LINES="51"]
+$ ssh   ssh bandit2@bandit.labs.overthewire.org -p 2220
+The authenticity of host '[bandit.labs.overthewire.org]:2220 ([56.228.72.241]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/app/.ssh' (No such file or directory).
+Failed to add the host to the list of known hosts (/home/app/.ssh/known_hosts).
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit2@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ ls
+[?2004l--spaces in this filename--
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ cat [K[K[K[K# try [K[K[K[K[K[Kcat 
+.bash_logout                 .bashrc                      .profile                     --spaces in this filename--  
+]0;bandit2@bandit: ~bandit2@bandit:~$ cat --[K[K[7m--spaces in this filename--[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C--spaces in this filename--
+[?2004lcat: unrecognized option '--spaces'
+Try 'cat --help' for more information.
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ # try using `''` to top[K[K[K[K[K[Kto wrap the file [K[K[K[K[Ktarget file
+[?2004l[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ cat '[7m--spaces in this filename--[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C--spaces in this filename--'
+[?2004lcat: unrecognized option '--spaces in this filename--'
+Try 'cat --help' for more information.
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ cat "[K[K[K[K[K# weird, i think this works on my mac though[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Knk this usually works though[Kh
+[?2004l[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ cat "[7m--spaces in this filename--[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C--spaces in this filename--"
+[?2004lcat: unrecognized option '--spaces in this filename--'
+Try 'cat --help' for more information.
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ cat [7m--spaces in this filename--[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C--spaces in this filename--[C[C[1@\[1P[C[1@\[C[1@\[C[C[C[C[C[C[C[1@\[C[C[C[1@\[C[C[C[C[C\ filename--[C[C[C[C[C[C[C[C[C\--[C\-
+[?2004lcat: unrecognized option '--spaces in this filename--'
+Try 'cat --help' for more information.
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ vi --spaces\ in\ this\ filename-- 
+[?2004lVIM - Vi IMproved 9.1 (2024 Jan 02, compiled Apr 01 2025 20:12:31)
+Unknown option argument: "--spaces in this filename--"
+More info with: "vim -h"
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ file 
+.bash_logout                 .bashrc                      .profile                     --spaces in this filename--  
+]0;bandit2@bandit: ~bandit2@bandit:~$ file --
+--apple                --dereference          --help                 --mime-encoding        --no-sandbox           --separator            
+--brief                --exclude              --keep-going           --mime-type            --parameter            --special-files        
+--checking-printout    --exclude-quiet        --list                 --no-buffer            --preserve-date        --uncompress           
+--compile              --extension            --magic-file           --no-dereference       --print0               --uncompress-noreport  
+--debug                --files-from           --mime                 --no-pad               --raw                  --version              
+]0;bandit2@bandit: ~bandit2@bandit:~$ file --sp[K[K[K[K"[7m--spaces in this filename--[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C--spaces in this filename--"
+[?2004lfile: unrecognized option '--spaces in this filename--'
+Usage: file [-bcCdEhikLlNnprsSvzZ0] [--apple] [--extension] [--mime-encoding]
+            [--mime-type] [-e <testname>] [-F <separator>]  [-f <namefile>]
+            [-m <magicfiles>] [-P <parameter=value>] [--exclude-quiet]
+            <file> ...
+       file -C [-m <magicfiles>]
+       file [--help]
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ cat < "[K"[7m--spaces in this filename--[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C--spaces in this filename--"
+[?2004lMNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ # I guess the the first [K[K[K[K[K[K[K[K[K[K[K[K[K[Kthe fu[Kirst '-'[K[K[K`-` mess up `cat` input again
+[?2004l[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ ls -a
+[?2004l[0m[01;34m.[0m  [01;34m..[0m  .bash_logout  .bashrc  .profile  --spaces in this filename--
+[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ # explore a bit more
+[?2004l[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ vi bash[K[K[K[K.profile 
+[?2004l[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;51r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[51;1H".profile" [readonly] 27L, 807B[2;1H▽[6n[2;1H  [3;1HPzz\[0%m[6n[3;1H           [1;1H[>c]10;?]11;?[1;1H[34m# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login[m[2;72H[K[3;1H[34m# exists.[m[3;10H[K[4;1H[34m# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash[m
+[33mif [[m [33m-n[m [33m"[m[35m$BASH_VERSION[m[33m"[m [33m];[m [33mthen[m
+    [34m# include .bashrc if it exists[m
+    [33mif [[m [33m-f[m [33m"[m[35m$HOME[m[31m/.bashrc[m[33m"[m [33m];[m [33mthen
+        . "[m[35m$HOME[m[31m/.bashrc[m[33m"
+[m    [33mfi
+fi[m
+
+[34m# set PATH so it includes user's private bin if it exists[m
+[33mif [[m [33m-d[m [33m"[m[35m$HOME[m[31m/bin[m[33m"[m [33m][m [33m;[m [33mthen[m
+    [35mPATH[m[33m="[m[35m$HOME[m[31m/bin:[m[35m$PATH[m[33m"
+fi[m
+
+[34m# set PATH so it includes user's private bin if it exists[m
+[33mif [[m [33m-d[m [33m"[m[35m$HOME[m[31m/.local/bin[m[33m"[m [33m][m [33m;[m [33mthen[m
+    [35mPATH[m[33m="[m[35m$HOME[m[31m/.local/bin:[m[35m$PATH[m[33m"
+fi[m
+[1m[34m~                                                                                                                                                                                 [29;1H~                                                                                                                                                                                 [30;1H~                                                                                                                                                                                 [31;1H~                                                                                                                                                                                 [32;1H~                                                                                                                                                                                 [33;1H~                                                                                                                                                                                 [34;1H~                                                                                                                                                                                 [35;1H~                                                                                                                                                                                 [36;1H~                                                                                                                                                                                 [37;1H~                                                                                                                                                                                 [38;1H~                                                                                                                                                                                 [39;1H~                                                                                                                                                                                 [40;1H~                                                                                                                                                                                 [41;1H~                                                                                                                                                                                 [42;1H~                                                                                                                                                                                 [43;1H~                                                                                                                                                                                 [44;1H~                                                                                                                                                                                 [45;1H~                                                                                                                                                                                 [46;1H~                                                                                                                                                                                 [47;1H~                                                                                                                                                                                 [48;1H~                                                                                                                                                                                 [49;1H~                                                                                                                                                                                 [50;1H~                                                                                                                                                                                 [m[51;161H1,1[11CAll[1;1H[?25h[?4mP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\P$q q\[?12$p[27m[23m[29m[m[H[2J[?25l[1;1H[1m[36m# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash[m
+[1m[33mif [[m [1m[33m-n[m [1m[33m"[m[1m[34m$BASH_VERSION[m[1m[33m"[m [1m[33m];[m [1m[33mthen[m
+    [1m[36m# include .bashrc if it exists[m
+    [1m[33mif [[m [1m[33m-f[m [1m[33m"[m[1m[34m$HOME[m[1m[35m/.bashrc[m[1m[33m"[m [1m[33m];[m [1m[33mthen
+        . "[m[1m[34m$HOME[m[1m[35m/.bashrc[m[1m[33m"
+[m    [1m[33mfi
+fi[m
+
+[1m[36m# set PATH so it includes user's private bin if it exists[m
+[1m[33mif [[m [1m[33m-d[m [1m[33m"[m[1m[34m$HOME[m[1m[35m/bin[m[1m[33m"[m [1m[33m][m [1m[33m;[m [1m[33mthen[m
+    [1m[34mPATH[m[1m[33m="[m[1m[34m$HOME[m[1m[35m/bin:[m[1m[34m$PATH[m[1m[33m"
+fi[m
+
+[1m[36m# set PATH so it includes user's private bin if it exists[m
+[1m[33mif [[m [1m[33m-d[m [1m[33m"[m[1m[34m$HOME[m[1m[35m/.local/bin[m[1m[33m"[m [1m[33m][m [1m[33m;[m [1m[33mthen[m
+    [1m[34mPATH[m[1m[33m="[m[1m[34m$HOME[m[1m[35m/.local/bin:[m[1m[34m$PATH[m[1m[33m"
+fi[m
+[1m[34m~                                                                                                                                                                                 [29;1H~                                                                                                                                                                                 [30;1H~                                                                                                                                                                                 [31;1H~                                                                                                                                                                                 [32;1H~                                                                                                                                                                                 [33;1H~                                                                                                                                                                                 [34;1H~                                                                                                                                                                                 [35;1H~                                                                                                                                                                                 [36;1H~                                                                                                                                                                                 [37;1H~                                                                                                                                                                                 [38;1H~                                                                                                                                                                                 [39;1H~                                                                                                                                                                                 [40;1H~                                                                                                                                                                                 [41;1H~                                                                                                                                                                                 [42;1H~                                                                                                                                                                                 [43;1H~                                                                                                                                                                                 [44;1H~                                                                                                                                                                                 [45;1H~                                                                                                                                                                                 [46;1H~                                                                                                                                                                                 [47;1H~                                                                                                                                                                                 [48;1H~                                                                                                                                                                                 [49;1H~                                                                                                                                                                                 [50;1H~                                                                                                                                                                                 [m[51;161H1,1[11CAll".profile" [readonly] 27L, 807B[1;1H[?25h[27m[23m[29m[m[H[2J[?25l[1;1H[96m# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash[m
+[93mif [[m [93m-n[m [93m"[m[38;5;81m$BASH_VERSION[m[93m"[m [93m];[m [93mthen[m
+    [96m# include .bashrc if it exists[m
+    [93mif [[m [93m-f[m [93m"[m[38;5;81m$HOME[m[95m/.bashrc[m[93m"[m [93m];[m [93mthen
+        . "[m[38;5;81m$HOME[m[95m/.bashrc[m[93m"
+[m    [93mfi
+fi[m
+
+[96m# set PATH so it includes user's private bin if it exists[m
+[93mif [[m [93m-d[m [93m"[m[38;5;81m$HOME[m[95m/bin[m[93m"[m [93m][m [93m;[m [93mthen[m
+    [38;5;81mPATH[m[93m="[m[38;5;81m$HOME[m[95m/bin:[m[38;5;81m$PATH[m[93m"
+fi[m
+
+[96m# set PATH so it includes user's private bin if it exists[m
+[93mif [[m [93m-d[m [93m"[m[38;5;81m$HOME[m[95m/.local/bin[m[93m"[m [93m][m [93m;[m [93mthen[m
+    [38;5;81mPATH[m[93m="[m[38;5;81m$HOME[m[95m/.local/bin:[m[38;5;81m$PATH[m[93m"
+fi[m
+[94m~                                                                                                                                                                                 [29;1H~                                                                                                                                                                                 [30;1H~                                                                                                                                                                                 [31;1H~                                                                                                                                                                                 [32;1H~                                                                                                                                                                                 [33;1H~                                                                                                                                                                                 [34;1H~                                                                                                                                                                                 [35;1H~                                                                                                                                                                                 [36;1H~                                                                                                                                                                                 [37;1H~                                                                                                                                                                                 [38;1H~                                                                                                                                                                                 [39;1H~                                                                                                                                                                                 [40;1H~                                                                                                                                                                                 [41;1H~                                                                                                                                                                                 [42;1H~                                                                                                                                                                                 [43;1H~                                                                                                                                                                                 [44;1H~                                                                                                                                                                                 [45;1H~                                                                                                                                                                                 [46;1H~                                                                                                                                                                                 [47;1H~                                                                                                                                                                                 [48;1H~                                                                                                                                                                                 [49;1H~                                                                                                                                                                                 [50;1H~                                                                                                                                                                                 [m[51;161H1,1[11CAll".profile" [readonly] 27L, 807B[1;1HP+q6b32\P+q6b33\[?25hP+q6b34\P+q6b35\P+q6b36\P+q6b37\P+q6b38\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;155H+[1;1H[51;156Hr[1;1H[51;157H^[[1;1H[51;151H        [1;1HP+q6b39\P+q6b3b\P+q4631\[?25hP+q4632\P+q2531\P+q2638\P+q6b62\P+q6b49\P+q6b44\P+q6b68\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;155H+[1;1H[51;156Hr[1;1H[51;157H^[[1;1H[51;151H        [1;1HP+q4037\P+q6b50\P+q6b4e\[?25hP+q4b31\P+q4b33\P+q4b34\P+q4b35\P+q6b42\P+q5053\P+q5045\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;155H+[1;1H[51;156Hr[1;1H[51;157H^[[1;1H[51;159H[[1;1H[51;151H         [1;1H[?25h[?25l[51;151H^[[1;1H[51;151H  [1;1H[51;151H^[[1;1H[51;151H  [1;1H[51;161H[K[51;161H1,1[11CAll[1;1H[?25h[?25l[51;151H:[1;1H[51;1H[K[51;1H:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[51;1H[K[51;1H[?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;m[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ vi bas[K[K[K.bah[Kshrc
+[?2004l[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;51r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[51;1H".bashrc" [readonly] 118L, 3851B[2;1H▽[6n[2;1H  [3;1HPzz\[0%m[6n[3;1H           [1;1H[>c]10;?]11;?[1;1H[33mexport[m [36mGAMEHOSTNAME[m=[35m${GAMEHOSTNAME[m[33m:-[m[35m$HOSTNAME}[m
+[34m# ~/.bashrc: executed by bash(1) for non-login shells.[m[2;55H[K[3;1H[34m# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)[m[3;75H[K[4;1H[34m# for examples
+
+# If not running interactively, don't do anything[m
+[33mcase[m [35m$-[m [33min[m
+    *i*[33m)[m [33m;;[m[9;7H*[33m)[m [33mreturn;;
+esac[m
+
+[34m# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options[m
+[36mHISTCONTROL[m=ignoreboth
+
+[34m# append to the history file, don't overwrite it[m
+shopt [35m-s[m histappend
+
+[34m# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)[m
+[36mHISTSIZE[m=[31m1000[m
+[36mHISTFILESIZE[m=[31m2000[m
+
+[34m# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.[m
+shopt [35m-s[m checkwinsize
+
+[34m# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)[m
+[33m[[m [33m-x[m /usr/bin/lesspipe [33m][m && [33meval[m [33m"[m[35m$(SHELL[m[33m=[m[35m/bin/sh lesspipe[m[35m)[m[33m"[m
+
+[34m# set variable identifying the chroot you work in (used in the prompt below)[m
+[33mif [[m [33m-z[m [33m"[m[35m${debian_chroot[m[33m:-[m[35m}[m[33m"[m [33m][m [33m&&[m [33m[[m [33m-r[m /etc/debian_chroot [33m];[m [33mthen[m
+    [36mdebian_chroot[m=[35m$([m[33mcat[m[35m /etc/debian_chroot[m[35m)[m
+[33mfi[m
+
+[34m# set a fancy prompt (non-color, unless we know we "want" color)[m
+[33mcase[m [33m"[m[35m$TERM[m[33m"[m [33min[m
+    xterm-color|*-256color[33m)[m [36mcolor_prompt[m=yes[33m;;
+esac[m
+
+[34m# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes[m
+
+[33mif [[m [33m-n[m [33m"[m[35m$force_color_prompt[m[33m"[m [33m];[m [33mthen
+[m    [33mif [[m [33m-x[m /usr/bin/tput [33m][m [33m&&[m [33mtput[m setaf [31m1[m [33m>&[m/dev/null[33m;[m [33mthen[m[51;161H1,1[11CTop[1;1H[?25h[?4mP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\P$q q\[?12$p[?25l[51;151H0[1;1H[51;152H6[1;1H[51;153H0[1;1H[51;154H3[1;1H[51;155H/[1;1H[51;156H0[1;1H[51;157H6[1;1H[51;158H0[1;1H[51;159H3[1;1H[51;151H603/0603^[[1;1H[51;151H          [1;1H[27m[23m[29m[m[H[2J[1;1H[1m[33mexport[m [1m[36mGAMEHOSTNAME[m=[1m[34m${GAMEHOSTNAME[m[1m[33m:-[m[1m[34m$HOSTNAME}[m
+[1m[36m# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything[m
+[1m[33mcase[m [1m[34m$-[m [1m[33min[m
+    *i*[1m[33m)[m [1m[33m;;[m[9;7H*[1m[33m)[m [1m[33mreturn;;
+esac[m
+
+[1m[36m# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options[m
+[1m[36mHISTCONTROL[m=ignoreboth
+
+[1m[36m# append to the history file, don't overwrite it[m
+shopt [1m[31m-s[m histappend
+
+[1m[36m# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)[m
+[1m[36mHISTSIZE[m=[1m[35m1000[m
+[1m[36mHISTFILESIZE[m=[1m[35m2000[m
+
+[1m[36m# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.[m
+shopt [1m[31m-s[m checkwinsize
+
+[1m[36m# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)[m
+[1m[33m[[m [1m[33m-x[m /usr/bin/lesspipe [1m[33m][m && [1m[33meval[m [1m[33m"[m[1m[34m$(SHELL[m[1m[33m=[m[1m[31m/bin/sh lesspipe[m[1m[34m)[m[1m[33m"[m
+
+[1m[36m# set variable identifying the chroot you work in (used in the prompt below)[m
+[1m[33mif [[m [1m[33m-z[m [1m[33m"[m[1m[34m${debian_chroot[m[1m[33m:-[m[1m[34m}[m[1m[33m"[m [1m[33m][m [1m[33m&&[m [1m[33m[[m [1m[33m-r[m /etc/debian_chroot [1m[33m];[m [1m[33mthen[m
+    [1m[36mdebian_chroot[m=[1m[34m$([m[1m[33mcat[m[1m[31m /etc/debian_chroot[m[1m[34m)[m
+[1m[33mfi[m
+
+[1m[36m# set a fancy prompt (non-color, unless we know we "want" color)[m
+[1m[33mcase[m [1m[33m"[m[1m[34m$TERM[m[1m[33m"[m [1m[33min[m
+    xterm-color|*-256color[1m[33m)[m [1m[36mcolor_prompt[m=yes[1m[33m;;
+esac[m
+
+[1m[36m# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes[m
+
+[1m[33mif [[m [1m[33m-n[m [1m[33m"[m[1m[34m$force_color_prompt[m[1m[33m"[m [1m[33m];[m [1m[33mthen
+[m    [1m[33mif [[m [1m[33m-x[m /usr/bin/tput [1m[33m][m [1m[33m&&[m [1m[33mtput[m setaf [1m[35m1[m [1m[33m>&[m/dev/null[1m[33m;[m [1m[33mthen[m[51;161H1,1[11CTop".bashrc" [readonly] 118L, 3851B[1;1H[?25h[27m[23m[29m[m[H[2J[?25l[1;1H[93mexport[m [1m[96mGAMEHOSTNAME[m=[38;5;81m${GAMEHOSTNAME[m[93m:-[m[38;5;81m$HOSTNAME}[m
+[96m# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything[m
+[93mcase[m [38;5;81m$-[m [93min[m
+    *i*[93m)[m [93m;;[m[9;7H*[93m)[m [93mreturn;;
+esac[m
+
+[96m# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options[m
+[1m[96mHISTCONTROL[m=ignoreboth
+
+[96m# append to the history file, don't overwrite it[m
+shopt [38;5;224m-s[m histappend
+
+[96m# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)[m
+[1m[96mHISTSIZE[m=[95m1000[m
+[1m[96mHISTFILESIZE[m=[95m2000[m
+
+[96m# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.[m
+shopt [38;5;224m-s[m checkwinsize
+
+[96m# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)[m
+[93m[[m [93m-x[m /usr/bin/lesspipe [93m][m && [93meval[m [93m"[m[38;5;81m$(SHELL[m[93m=[m[38;5;224m/bin/sh lesspipe[m[38;5;81m)[m[93m"[m
+
+[96m# set variable identifying the chroot you work in (used in the prompt below)[m
+[93mif [[m [93m-z[m [93m"[m[38;5;81m${debian_chroot[m[93m:-[m[38;5;81m}[m[93m"[m [93m][m [93m&&[m [93m[[m [93m-r[m /etc/debian_chroot [93m];[m [93mthen[m
+    [1m[96mdebian_chroot[m=[38;5;81m$([m[93mcat[m[38;5;224m /etc/debian_chroot[m[38;5;81m)[m
+[93mfi[m
+
+[96m# set a fancy prompt (non-color, unless we know we "want" color)[m
+[93mcase[m [93m"[m[38;5;81m$TERM[m[93m"[m [93min[m
+    xterm-color|*-256color[93m)[m [1m[96mcolor_prompt[m=yes[93m;;
+esac[m
+
+[96m# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes[m
+
+[93mif [[m [93m-n[m [93m"[m[38;5;81m$force_color_prompt[m[93m"[m [93m];[m [93mthen
+[m    [93mif [[m [93m-x[m /usr/bin/tput [93m][m [93m&&[m [93mtput[m setaf [95m1[m [93m>&[m/dev/null[93m;[m [93mthen[m[51;161H1,1[11CTop".bashrc" [readonly] 118L, 3851B[1;1HP+q6b32\P+q6b33\P+q6b34\P+q6b35\P+q6b36\[?25hP+q6b37\P+q6b38\P+q6b39\P+q6b3b\P+q4631\P+q4632\P+q2531\P+q2638\P+q6b62\P+q6b49\P+q6b44\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;155H+[1;1H[51;156Hr[1;1H[51;151H      [1;1HP+q6b68\P+q4037\P+q6b50\P+q6b4e\[?25hP+q4b31\P+q4b33\P+q4b34\P+q4b35\P+q6b42\P+q5053\[?25l[51;151H^[[1;1H[51;153HP[1;1H[51;154H1[1;1H[51;151H    [1;1HP+q5045\[?25h[?25l[51;151H1[1;1H[?25h[?25l[51;152H0[1;1H[?25h[?25l[51;153H0[1;1H[?25h[?25l[51;154H0[1;1H[?25h[?25l[51;155Hj[1;1H[51;151H     [50;1H[1;1Hxterm*|rxvt*[93m)[m[1;14H[K[2;1H    [38;5;81mPS1[m[93m="[m[38;5;224m\[\e[m[95m]0;[m[38;5;81m${debian_chroot[m[93m:+[m([38;5;81m$debian_chroot[m)[38;5;81m}[m[38;5;224m\u[m[95m@[m[38;5;81m$GAMEHOSTNAME[m[95m: [m[38;5;224m\w\a\][m[38;5;81m$PS1[m[93m"[m
+    [93m;;[m[3;7H[K[4;1H*[93m)[m[4;3H[K[5;5H[93m;;
+esac[m[6;5H[K[7;1H[K[8;1H[96m# enable color support of ls and also add handy aliases[m
+[93mif [[m [93m-x[m /usr/bin/dircolors [93m];[m [93mthen[m
+    [93mtest[m [93m-r[m ~/.dircolors [93m&&[m [93meval[m [93m"[m[38;5;81m$([m[38;5;224mdircolors -b ~/.dircolors[m[38;5;81m)[m[93m"[m [93m||[m [93meval[m [93m"[m[38;5;81m$([m[38;5;224mdircolors -b[m[38;5;81m)[m[93m"
+[m    [93malias [m[1m[96mls[m[93m='[m[95mls --color=auto[m[93m'[m
+    [96m#alias dir='dir --color=auto'[m[12;34H[K[13;1H    [96m#alias vdir='vdir --color=auto'[m[14;1H[K[15;5H[93malias [m[1m[96mgrep[m[93m='[m[95mgrep --color=auto[m[93m'[m
+    [93malias [m[1m[96mfgrep[m[93m='[m[95mfgrep --color=auto[m[93m'[m[16;37H[K[17;1H    [93malias [m[1m[96megrep[m[93m='[m[95megrep --color=auto[m[93m'
+fi[m[19;1H[K[20;1H[96m# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases[m[23;23H[K[24;1H[93malias [m[1m[96mll[m[93m='[m[95mls -alF[m[93m'[m[24;19H[K[25;1H[93malias [m[1m[96mla[m[93m='[m[95mls -A[m[93m'[m[25;17H[K[26;1H[93malias [m[1m[96ml[m[93m='[m[95mls -CF[m[93m'[m[27;1H[K[28;3H[96mAdd an "alert" alias for long running commands.  Use like so:[m[28;64H[K[29;2H[96m   sleep 10; alert[m
+[93malias [m[1m[96malert[m[93m='[m[95mnotify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e [m[93m'[m[38;5;224m\'[m[93m'[m[95ms/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//[m[93m'[m[38;5;224m\'[m[93m'[m[95m)"[m[93m'[m[31;1H[K[32;1H[96m# Alias definitions.[m[32;21H[K[33;1H[96m# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.[m[34;57H[K[35;1H[96m# See /usr/share/doc/bash-doc/examples in the bash-doc package.[m[35;64H[K[36;5H[K[37;1H[93mif [[m [93m-f[m ~/.bash_aliases [93m];[m [93mthen
+[m   [93m . [m~/.bash_aliases
+[93mfi[m[39;3H[K[40;1H[K[41;1H[96m# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).[m
+[93mif ![m shopt [38;5;224m-oq[m posix[93m;[m [93mthen[m[44;27H[K[45;1H  [93mif [[m [93m-f[m /usr/share/bash-completion/bash_completion [93m];[m [93mthen[m[45;61H[K[46;1H   [93m . [m/usr/share/bash-completion/bash_completion[46;49H[K[47;1H  [93melif[m [93m[[m [93m-f[m /etc/bash_completion [93m];[m [93mthen
+[m   [93m . [m/etc/bash_completion
+  [93mfi[m[49;6H[K[50;1H[93mfi[m[50;5H[K[51;161H[K[51;161H118,1[9CBot[50;1H[?25h[?25l[51;151H^[[50;1H[51;151H  [50;1H[51;151H^[[50;1H[51;151H  [50;1H[?25h[?25l[51;151H:[50;1H[51;1H[K[51;1H:[?25hq[?25l[?2004l[>4;m[23;2t[23;1t[51;1H[K[51;1H[?1004l[?2004l[?1l>[?1049l[23;0;0t[?25h[>4;m[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ # i don't see any est[K[Kas[K[Ke[Kaster egge[Ks, light skimming
+[?2004l[?2004h]0;bandit2@bandit: ~bandit2@bandit:~$ exit[K[K[K[Kexit
+[?2004llogout
+Connection to bandit.labs.overthewire.org closed.
+$ exit
+
+Script done on 2025-09-20 07:31:07+00:00 [COMMAND_EXIT_CODE="0"]

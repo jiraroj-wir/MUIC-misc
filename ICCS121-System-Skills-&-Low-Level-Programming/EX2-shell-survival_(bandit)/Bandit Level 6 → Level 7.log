@@ -1,0 +1,393 @@
+Script started on 2025-09-20 09:30:26+00:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="178" LINES="51"]
+$ ssh bandit4 6@bandit.labs.overthewire.org -p 2220
+The authenticity of host '[bandit.labs.overthewire.org]:2220 ([56.228.72.241]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/app/.ssh' (No such file or directory).
+Failed to add the host to the list of known hosts (/home/app/.ssh/known_hosts).
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit6@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+[?2004h]0;bandit6@bandit: ~bandit6@bandit:~$ ls
+[?2004l[?2004h]0;bandit6@bandit: ~bandit6@bandit:~$ # can't find any[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls -a
+[?2004l[0m[01;34m.[0m  [01;34m..[0m  .bash_logout  .bashrc  .profile
+[?2004h]0;bandit6@bandit: ~bandit6@bandit:~$ # nothing importn[Kant in the home directory, [K[K
+[?2004l[?2004h]0;bandit6@bandit: ~bandit6@bandit:~$ # go to the root node, so wa[Ke can just search the [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K, so we can search from the root
+[?2004l[?2004h]0;bandit6@bandit: ~bandit6@bandit:~$ cd ..;[K/../../../../..
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ ls
+[?2004l[0m[01;34mbehemoth[0m  [01;34mbin.usr-is-merged[0m  [01;34mdev[0m      [01;34metc[0m         [01;34mhome[0m     [01;36mlib[0m    [01;36mlib64[0m              [01;36mlibx32[0m      [01;34mmanpage[0m  [01;34mmedia[0m  [01;34mnarnia[0m  [01;34mproc[0m  [01;34mrun[0m   [01;34msbin.usr-is-merged[0m  [01;34msrv[0m  [30;42mtmp[0m  [01;34mutumno[0m  [01;34mvortex[0m
+[01;36mbin[0m       [01;34mboot[0m               [01;34mdrifter[0m  [01;34mformulaone[0m  [01;34mkrypton[0m  [01;36mlib32[0m  [01;34mlib.usr-is-merged[0m  [01;34mlost+found[0m  [01;34mmaze[0m     [01;34mmnt[0m    [01;34mopt[0m     [01;34mroot[0m  [01;36msbin[0m  [01;34msnap[0m                [01;34msys[0m  [01;34musr[0m  [01;34mvar[0m
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ cd ..
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ ls
+[?2004l[0m[01;34mbehemoth[0m  [01;34mbin.usr-is-merged[0m  [01;34mdev[0m      [01;34metc[0m         [01;34mhome[0m     [01;36mlib[0m    [01;36mlib64[0m              [01;36mlibx32[0m      [01;34mmanpage[0m  [01;34mmedia[0m  [01;34mnarnia[0m  [01;34mproc[0m  [01;34mrun[0m   [01;34msbin.usr-is-merged[0m  [01;34msrv[0m  [30;42mtmp[0m  [01;34mutumno[0m  [01;34mvortex[0m
+[01;36mbin[0m       [01;34mboot[0m               [01;34mdrifter[0m  [01;34mformulaone[0m  [01;34mkrypton[0m  [01;36mlib32[0m  [01;34mlib.usr-is-merged[0m  [01;34mlost+found[0m  [01;34mmaze[0m     [01;34mmnt[0m    [01;34mopt[0m     [01;34mroot[0m  [01;36msbin[0m  [01;34msnap[0m                [01;34msys[0m  [01;34musr[0m  [01;34mvar[0m
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # make sure we're in root node
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ find -user[K[K[K[K[K[K . [K[K[K[K[K[K[K# find user[K[K[K[Kby user, group and file_[K size
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ find . -user bandit7 -groupbandit[K[K[K[K[K[K bandit [K6 -size 33c
+[?2004lfind: ‘./sys/kernel/tracing/osnoise’: Permission denied
+find: ‘./sys/kernel/tracing/hwlat_detector’: Permission denied
+find: ‘./sys/kernel/tracing/instances’: Permission denied
+find: ‘./sys/kernel/tracing/trace_stat’: Permission denied
+find: ‘./sys/kernel/tracing/per_cpu’: Permission denied
+find: ‘./sys/kernel/tracing/options’: Permission denied
+find: ‘./sys/kernel/tracing/rv’: Permission denied
+find: ‘./sys/kernel/debug’: Permission denied
+find: ‘./sys/fs/pstore’: Permission denied
+find: ‘./sys/fs/bpf’: Permission denied
+find: ‘./root’: Permission denied
+find: ‘./boot/lost+found’: Permission denied
+find: ‘./boot/efi’: Permission denied
+find: ‘./run/udisks2’: Permission denied
+find: ‘./run/chrony’: Permission denied
+find: ‘./run/user/8001’: Permission denied
+find: ‘./run/user/11015’: Permission denied
+find: ‘./run/user/12000’: Permission denied
+find: ‘./run/user/11031’: Permission denied
+find: ‘./run/user/11022’: Permission denied
+find: ‘./run/user/11009’: Permission denied
+find: ‘./run/user/13000’: Permission denied
+find: ‘./run/user/11003’: Permission denied
+find: ‘./run/user/11008’: Permission denied
+find: ‘./run/user/11030’: Permission denied
+find: ‘./run/user/11010’: Permission denied
+find: ‘./run/user/11014’: Permission denied
+find: ‘./run/user/14003’: Permission denied
+find: ‘./run/user/11017’: Permission denied
+find: ‘./run/user/11023’: Permission denied
+find: ‘./run/user/11007’: Permission denied
+find: ‘./run/user/11004’: Permission denied
+find: ‘./run/user/11029’: Permission denied
+find: ‘./run/user/11001’: Permission denied
+find: ‘./run/user/11002’: Permission denied
+find: ‘./run/user/11000’: Permission denied
+find: ‘./run/user/11005’: Permission denied
+find: ‘./run/user/11006/systemd/inaccessible/dir’: Permission denied
+find: ‘./run/user/11025’: Permission denied
+find: ‘./run/user/11019’: Permission denied
+find: ‘./run/user/11016’: Permission denied
+find: ‘./run/user/11024’: Permission denied
+find: ‘./run/user/11020’: Permission denied
+find: ‘./run/user/11013’: Permission denied
+find: ‘./run/user/11012’: Permission denied
+find: ‘./run/user/11026’: Permission denied
+find: ‘./run/user/11027’: Permission denied
+find: ‘./run/sudo’: Permission denied
+find: ‘./run/screen/S-bandit25’: Permission denied
+find: ‘./run/screen/S-bandit23’: Permission denied
+find: ‘./run/screen/S-bandit22’: Permission denied
+find: ‘./run/screen/S-bandit1’: Permission denied
+find: ‘./run/screen/S-bandit0’: Permission denied
+find: ‘./run/screen/S-utumno0’: Permission denied
+find: ‘./run/screen/S-bandit20’: Permission denied
+find: ‘./run/screen/S-bandit19’: Permission denied
+find: ‘./run/multipath’: Permission denied
+find: ‘./run/cryptsetup’: Permission denied
+find: ‘./run/lvm’: Permission denied
+find: ‘./run/systemd/propagate/fwupd.service’: Permission denied
+find: ‘./run/systemd/propagate/ModemManager.service’: Permission denied
+find: ‘./run/systemd/propagate/polkit.service’: Permission denied
+find: ‘./run/systemd/propagate/chrony.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-logind.service’: Permission denied
+find: ‘./run/systemd/propagate/irqbalance.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-networkd.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-resolved.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-udevd.service’: Permission denied
+find: ‘./run/systemd/inaccessible/dir’: Permission denied
+find: ‘./run/lock/lvm’: Permission denied
+find: ‘./dev/mqueue’: Permission denied
+find: ‘./dev/shm’: Permission denied
+find: ‘./lost+found’: Permission denied
+find: ‘./drifter/drifter14_src/axTLS’: Permission denied
+find: ‘./manpage/manpage3-pw’: Permission denied
+find: ‘./var/log’: Permission denied
+find: ‘./var/lib/private’: Permission denied
+find: ‘./var/lib/udisks2’: Permission denied
+find: ‘./var/lib/apt/lists/partial’: Permission denied
+find: ‘./var/lib/update-notifier/package-data-downloads/partial’: Permission denied
+find: ‘./var/lib/chrony’: Permission denied
+find: ‘./var/lib/snapd/void’: Permission denied
+find: ‘./var/lib/snapd/cookie’: Permission denied
+find: ‘./var/lib/ubuntu-advantage/apt-esm/var/lib/apt/lists/partial’: Permission denied
+find: ‘./var/lib/amazon’: Permission denied
+find: ‘./var/lib/polkit-1’: Permission denied
+./var/lib/dpkg/info/bandit7.password
+find: ‘./var/spool/bandit24’: Permission denied
+find: ‘./var/spool/rsyslog’: Permission denied
+find: ‘./var/spool/cron/crontabs’: Permission denied
+find: ‘./var/cache/pollinate’: Permission denied
+find: ‘./var/cache/private’: Permission denied
+find: ‘./var/cache/apt/archives/partial’: Permission denied
+find: ‘./var/cache/ldconfig’: Permission denied
+find: ‘./var/cache/apparmor/0fb44ac6.0’: Permission denied
+find: ‘./var/cache/apparmor/208b6430.0’: Permission denied
+find: ‘./var/crash’: Permission denied
+find: ‘./var/tmp’: Permission denied
+find: ‘./proc/tty/driver’: Permission denied
+find: ‘./proc/2558799/task/2558799/fd/6’: No such file or directory
+find: ‘./proc/2558799/task/2558799/fdinfo/6’: No such file or directory
+find: ‘./proc/2558799/fd/5’: No such file or directory
+find: ‘./proc/2558799/fdinfo/5’: No such file or directory
+find: ‘./snap’: Permission denied
+find: ‘./tmp’: Permission denied
+find: ‘./etc/credstore’: Permission denied
+find: ‘./etc/credstore.encrypted’: Permission denied
+find: ‘./etc/sudoers.d’: Permission denied
+find: ‘./etc/ssl/private’: Permission denied
+find: ‘./etc/xinetd.d’: Permission denied
+find: ‘./etc/stunnel’: Permission denied
+find: ‘./etc/polkit-1/rules.d’: Permission denied
+find: ‘./etc/multipath’: Permission denied
+find: ‘./home/bandit31-git’: Permission denied
+find: ‘./home/bandit5/inhere’: Permission denied
+find: ‘./home/leviathan4/.trash’: Permission denied
+find: ‘./home/bandit30-git’: Permission denied
+find: ‘./home/bandit27-git’: Permission denied
+find: ‘./home/leviathan0/.backup’: Permission denied
+find: ‘./home/drifter6/data’: Permission denied
+find: ‘./home/ubuntu’: Permission denied
+find: ‘./home/bandit28-git’: Permission denied
+find: ‘./home/bandit29-git’: Permission denied
+find: ‘./home/drifter8/chroot’: Permission denied
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # theres # [K[K[K# theres [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K# a lot of noise from '[K`Permission denied` and `No such file or directory`, try to grep them out
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # using invert match?
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # using invert match?a lot of noise from `Permission denied` and `No such file or directory`, try to grep them out[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[50Pfind . -user bandit7 -group bandit6 -size 33c | grep -v "Permission denied" | grep -v "No such file or directory"
+[?2004lfind: ‘./sys/kernel/tracing/osnoise’: Permission denied
+find: ‘./sys/kernel/tracing/hwlat_detector’: Permission denied
+find: ‘./sys/kernel/tracing/instances’: Permission denied
+find: ‘./sys/kernel/tracing/trace_stat’: Permission denied
+find: ‘./sys/kernel/tracing/per_cpu’: Permission denied
+find: ‘./sys/kernel/tracing/options’: Permission denied
+find: ‘./sys/kernel/tracing/rv’: Permission denied
+find: ‘./sys/kernel/debug’: Permission denied
+find: ‘./sys/fs/pstore’: Permission denied
+find: ‘./sys/fs/bpf’: Permission denied
+find: ‘./root’: Permission denied
+find: ‘./boot/lost+found’: Permission denied
+find: ‘./boot/efi’: Permission denied
+find: ‘./run/udisks2’: Permission denied
+find: ‘./run/chrony’: Permission denied
+find: ‘./run/user/13000’: Permission denied
+find: ‘./run/user/12001’: Permission denied
+find: ‘./run/user/11015’: Permission denied
+find: ‘./run/user/12000’: Permission denied
+find: ‘./run/user/11031’: Permission denied
+find: ‘./run/user/11022’: Permission denied
+find: ‘./run/user/11009’: Permission denied
+find: ‘./run/user/11003’: Permission denied
+find: ‘./run/user/11008’: Permission denied
+find: ‘./run/user/11030’: Permission denied
+find: ‘./run/user/11010’: Permission denied
+find: ‘./run/user/11014’: Permission denied
+find: ‘./run/user/14003’: Permission denied
+find: ‘./run/user/11017’: Permission denied
+find: ‘./run/user/11023’: Permission denied
+find: ‘./run/user/11007’: Permission denied
+find: ‘./run/user/11004’: Permission denied
+find: ‘./run/user/11001’: Permission denied
+find: ‘./run/user/11002’: Permission denied
+find: ‘./run/user/11000’: Permission denied
+find: ‘./run/user/11005’: Permission denied
+find: ‘./run/user/11006/systemd/inaccessible/dir’: Permission denied
+find: ‘./run/user/11025’: Permission denied
+find: ‘./run/user/11019’: Permission denied
+find: ‘./run/user/11016’: Permission denied
+find: ‘./run/user/11024’: Permission denied
+find: ‘./run/user/11020’: Permission denied
+find: ‘./run/user/11013’: Permission denied
+find: ‘./run/user/11012’: Permission denied
+find: ‘./run/user/11026’: Permission denied
+find: ‘./run/user/11027’: Permission denied
+find: ‘./run/sudo’: Permission denied
+find: ‘./run/screen/S-bandit25’: Permission denied
+find: ‘./run/screen/S-bandit23’: Permission denied
+find: ‘./run/screen/S-bandit22’: Permission denied
+find: ‘./run/screen/S-bandit1’: Permission denied
+find: ‘./run/screen/S-bandit0’: Permission denied
+find: ‘./run/screen/S-utumno0’: Permission denied
+find: ‘./run/screen/S-bandit20’: Permission denied
+find: ‘./run/screen/S-bandit19’: Permission denied
+find: ‘./run/multipath’: Permission denied
+find: ‘./run/cryptsetup’: Permission denied
+find: ‘./run/lvm’: Permission denied
+find: ‘./run/systemd/propagate/fwupd.service’: Permission denied
+find: ‘./run/systemd/propagate/ModemManager.service’: Permission denied
+find: ‘./run/systemd/propagate/polkit.service’: Permission denied
+find: ‘./run/systemd/propagate/chrony.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-logind.service’: Permission denied
+find: ‘./run/systemd/propagate/irqbalance.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-networkd.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-resolved.service’: Permission denied
+find: ‘./run/systemd/propagate/systemd-udevd.service’: Permission denied
+find: ‘./run/systemd/inaccessible/dir’: Permission denied
+find: ‘./run/lock/lvm’: Permission denied
+find: ‘./dev/mqueue’: Permission denied
+find: ‘./dev/shm’: Permission denied
+find: ‘./lost+found’: Permission denied
+find: ‘./drifter/drifter14_src/axTLS’: Permission denied
+find: ‘./manpage/manpage3-pw’: Permission denied
+find: ‘./var/log’: Permission denied
+find: ‘./var/lib/private’: Permission denied
+find: ‘./var/lib/udisks2’: Permission denied
+find: ‘./var/lib/apt/lists/partial’: Permission denied
+find: ‘./var/lib/update-notifier/package-data-downloads/partial’: Permission denied
+find: ‘./var/lib/chrony’: Permission denied
+find: ‘./var/lib/snapd/void’: Permission denied
+find: ‘./var/lib/snapd/cookie’: Permission denied
+find: ‘./var/lib/ubuntu-advantage/apt-esm/var/lib/apt/lists/partial’: Permission denied
+find: ‘./var/lib/amazon’: Permission denied
+find: ‘./var/lib/polkit-1’: Permission denied
+find: ‘./var/spool/bandit24’: Permission denied
+find: ‘./var/spool/rsyslog’: Permission denied
+find: ‘./var/spool/cron/crontabs’: Permission denied
+find: ‘./var/cache/pollinate’: Permission denied
+find: ‘./var/cache/private’: Permission denied
+find: ‘./var/cache/apt/archives/partial’: Permission denied
+find: ‘./var/cache/ldconfig’: Permission denied
+find: ‘./var/cache/apparmor/0fb44ac6.0’: Permission denied
+find: ‘./var/cache/apparmor/208b6430.0’: Permission denied
+find: ‘./var/crash’: Permission denied
+find: ‘./var/tmp’: Permission denied
+find: ‘./proc/tty/driver’: Permission denied
+find: ‘./proc/2564358/task/2564358/fd/6’: No such file or directory
+find: ‘./proc/2564358/task/2564358/fdinfo/6’: No such file or directory
+find: ‘./proc/2564358/fd/5’: No such file or directory
+find: ‘./proc/2564358/fdinfo/5’: No such file or directory
+find: ‘./snap’: Permission denied
+find: ‘./tmp’: Permission denied
+find: ‘./etc/credstore’: Permission denied
+find: ‘./etc/credstore.encrypted’: Permission denied
+find: ‘./etc/sudoers.d’: Permission denied
+find: ‘./etc/ssl/private’: Permission denied
+find: ‘./etc/xinetd.d’: Permission denied
+find: ‘./etc/stunnel’: Permission denied
+find: ‘./etc/polkit-1/rules.d’: Permission denied
+find: ‘./etc/multipath’: Permission denied
+find: ‘./home/bandit31-git’: Permission denied
+find: ‘./home/bandit5/inhere’: Permission denied
+find: ‘./home/leviathan4/.trash’: Permission denied
+find: ‘./home/bandit30-git’: Permission denied
+find: ‘./home/bandit27-git’: Permission denied
+find: ‘./home/leviathan0/.backup’: Permission denied
+find: ‘./home/drifter6/data’: Permission denied
+find: ‘./home/ubuntu’: Permission denied
+find: ‘./home/bandit28-git’: Permission denied
+find: ‘./home/bandit29-git’: Permission denied
+find: ‘./home/drifter8/chroot’: Permission denied
+./var/lib/dpkg/info/bandit7.password
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # i think i got the right path now, but why doesn't grep hide t[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kes grep still shows those noise path? 
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ cat [7m./var/lib/dpkg/info/bandit7.password[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./var/lib/dpkg/info/bandit7.password
+[?2004lmorbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # Wh[K[Kwhy grep still printout those noise path though? 
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # i[KI asked [K[K[K[K[K[Kjust ask chatgpt
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ [7mfind / -type f -user bandit7 -group bandit6 -size 33c -exec cat -- {} \; 2>/dev/null[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfind / -type f -user bandit7 -group bandit6 -size 33c -exec cat -- {} \; 2>/dev/null[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004lmorbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # from my[K[K[K[K[K[K[Kfrom my understandings. --[Kexec cat -- {} \; is separated into 2 parts
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # -exec {} \; -<[K[K,_[K[K<- ti[Khis one o[Kjs[Kust app;i[K[Klies cat -- to every matching directory name
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ cat -- -< [K[K[K[K[K[K[K[K[K[K# cat <-[K[K-- <- this one handles cases where theres '-' infront of the file name
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # And for the 2>/dev/null, [K[K
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # 2 meanst[K[K stader[K[K[K[Kderr, from the standard[K[K[K[K[K[K[K[K[K[K[K[K[K c[Kc [K[Kbinary streams: [K[K; t[Kother two are stdin and stdout(10[1P0[C[K1)[C[1@([1@0[1@)
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # # [K[Kand dev/null just maic[K[Kgic ![K[K!
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # So, from my understandig[Kngs, we can just run ...
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # So, from my understandings, we can just run ...[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23Pand dev/null just magic![C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C2 mean stderr, from binary streams; other two are stdin(0) and stdout(1)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CAnd for the 2>/dev/null[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccat -- <- this one handles cases where theres '-' infront of the file name[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2@-exec {} \; <- this one just applies cat -- to every matching directory[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pfrom my understandings. -exec cat -- {} \; is separated into 2 parts[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfind . -user bandit7 -group bandit6 -size 33c -exec cat -- {} \; 2>/dev/null[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[6P# from my understandings. -exec cat -- {} \; is separated into 2 parts[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfind . -user bandit7 -group bandit6 -size 33c -exec cat -- {} \; 2>/dev/null[C[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null[1P2>/dev/null 2>/dev/null
+[?2004l./var/lib/dpkg/info/bandit7.password
+[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # And we got the exact path to the password, using only the hints[K[K[K[K[K[K[K[K[K[Kits[K[K[K it [Ks property[Kies hint
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ # For the [K[K[K[K[K[K[K[K[K for the grep command, it[K suppo[Kosed it [K[K[Kit didn't handles stderr, so those noise still passes in [K
+[?2004l[?2004h]0;bandit6@bandit: /bandit6@bandit:/$ exit
+[?2004llogout
+Connection to bandit.labs.overthewire.org closed.
+$ exit
+
+Script done on 2025-09-20 11:10:42+00:00 [COMMAND_EXIT_CODE="1"]
