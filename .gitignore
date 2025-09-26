@@ -1,0 +1,19 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Common editor/IDE config
+.vscode/
+.idea/
+
+# Vim swap/backup files
+*~
+*.swp
+*.swo
+*.un~
