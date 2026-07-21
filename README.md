@@ -28,4 +28,13 @@ My MUIC miscellaneous coursework — small assignments, notes, and writings that
 * [ICMA216-Calculus-IIIA](https://github.com/jiraroj-wir/MUIC-ICMA216-Calculus-IIIA)
 
 
+### Trimester 4 (Term 3 / 2025-2026)
+
+* ICGH118-Photography-Visualizing-in-the-Digital-Age
+* ICGN130-Cryptography:-the-Science-of-Making-and-Breaking-Codes
+* ICGN132-Digital-Security-and-Privacy
+* [ICGS137-Witchcraft-and-Gender-Representation](https://github.com/jiraroj-wir/MUIC-ICGS137-Witchcraft-and-Gender-Representation)
+* Physics-II
+
+
 ---
