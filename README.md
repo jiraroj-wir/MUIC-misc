@@ -34,7 +34,7 @@ My MUIC miscellaneous coursework — small assignments, notes, and writings that
 * ICGN130-Cryptography:-the-Science-of-Making-and-Breaking-Codes
 * ICGN132-Digital-Security-and-Privacy
 * [ICGS137-Witchcraft-and-Gender-Representation](https://github.com/jiraroj-wir/MUIC-ICGS137-Witchcraft-and-Gender-Representation)
-* Physics-II
+* ICPY102-Physics-II
 
 
 ---
